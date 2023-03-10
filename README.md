@@ -9,3 +9,10 @@
 green #4bae4f
 red #f74354
 yellow #ffc107
+
+
+git put 
+git pull
+
+
+##เหลือ ทำ sum 
