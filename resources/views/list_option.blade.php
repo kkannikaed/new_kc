@@ -69,10 +69,10 @@
                             </div>
                         </div>
 
-                        <div class="container text-center">
+                        {{-- <div class="container text-center">
                             <a class="btn btn-warning" role="button" href="{{ url('/') }}">แก้ไข</a>
                             <a class="btn btn-danger" role="button" href="{{ url('/') }}">ลบ</a>
-                        </div>
+                        </div> --}}
 
 
 
@@ -86,11 +86,7 @@
                         <div class="card" style="width: 18rem;">
 
                             <div class="card-body">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"
-                                    fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-                                    <path
-                                        d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
-                                </svg>
+                                <i class="bi bi-person-fill" style="font-size: 40px;"></i>
                                 <h5 class="card-title">ทดสอบร่างกาย</h5>
 
                                 <br>
@@ -102,13 +98,7 @@
                         <div class="card" style="width: 18rem;">
 
                             <div class="card-body">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"
-                                    fill="currentColor" class="bi bi-card-checklist" viewBox="0 0 16 16">
-                                    <path
-                                        d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z" />
-                                    <path
-                                        d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0zM7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z" />
-                                </svg>
+                                <i class="bi bi-card-checklist" style="font-size: 40px;"></i>
                                 <h5 class="card-title">ทดสอบทฤษฎี</h5>
                                 <br>
                                 <a href="{{ route('theory', ['id' => $name->id]) }}" class="btn btn-primary">ทดสอบ</a>
@@ -119,11 +109,7 @@
                         <div class="card" style="width: 18rem;">
 
                             <div class="card-body">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"
-                                    fill="currentColor" class="bi bi-car-front-fill" viewBox="0 0 16 16">
-                                    <path
-                                        d="M2.52 3.515A2.5 2.5 0 0 1 4.82 2h6.362c1 0 1.904.596 2.298 1.515l.792 1.848c.075.175.21.319.38.404.5.25.855.715.965 1.262l.335 1.679c.033.161.049.325.049.49v.413c0 .814-.39 1.543-1 1.997V13.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1.338c-1.292.048-2.745.088-4 .088s-2.708-.04-4-.088V13.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1.892c-.61-.454-1-1.183-1-1.997v-.413a2.5 2.5 0 0 1 .049-.49l.335-1.68c.11-.546.465-1.012.964-1.261a.807.807 0 0 0 .381-.404l.792-1.848ZM3 10a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm10 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2ZM6 8a1 1 0 0 0 0 2h4a1 1 0 1 0 0-2H6ZM2.906 5.189a.51.51 0 0 0 .497.731c.91-.073 3.35-.17 4.597-.17 1.247 0 3.688.097 4.597.17a.51.51 0 0 0 .497-.731l-.956-1.913A.5.5 0 0 0 11.691 3H4.309a.5.5 0 0 0-.447.276L2.906 5.19Z" />
-                                </svg>
+                                <i class="bi bi-car-front-fill" style="font-size: 40px;"></i>
                                 <h5 class="card-title">ทดสอบปฏิบัติ</h5>
                                 <br>
                                 <a href="{{ route('operate', ['id' => $name->id]) }}" class="btn btn-primary">ทดสอบ</a>
@@ -134,6 +120,7 @@
                     <!-- Table -->
                     <div class="container py-5">
                         <table class="table  table-light table-striped-columns">
+
                             <thead>
                                 <tr>
 
@@ -158,8 +145,9 @@
                                     </td>
 
 
-                                    <th scope="col"> <a class="btn btn-warning" role="button"
-                                            href="{{ url('/') }}">แก้ไข</a>
+                                    <th scope="col">
+                                        <a href="{{ route('body', ['id' => $name->id]) }}"
+                                            class="btn btn-warning">แก้ไข</a>
                                         <a class="btn btn-danger" role="button" href="{{ url('/') }}">ลบ</a>
                                     </th>
                                 </tr>
@@ -176,8 +164,8 @@
                                     </td>
 
 
-                                    <th scope="col"> <a class="btn btn-warning" role="button"
-                                            href="{{ url('/') }}">แก้ไข</a>
+                                    <th scope="col"> <a href="{{ route('body', ['id' => $name->id]) }}"
+                                            class="btn btn-warning">แก้ไข</a>
                                         <a class="btn btn-danger" role="button" href="{{ url('/') }}">ลบ</a>
                                     </th>
                                 </tr>
@@ -194,8 +182,8 @@
                                     </td>
 
 
-                                    <th scope="col"> <a class="btn btn-warning" role="button"
-                                            href="{{ url('/') }}">แก้ไข</a>
+                                    <th scope="col"> <a href="{{ route('body', ['id' => $name->id]) }}"
+                                            class="btn btn-warning">แก้ไข</a>
                                         <a class="btn btn-danger" role="button" href="{{ url('/') }}">ลบ</a>
                                     </th>
 
@@ -213,8 +201,8 @@
                                     </td>
 
 
-                                    <th scope="col"> <a class="btn btn-warning" role="button"
-                                            href="{{ url('/') }}">แก้ไข</a>
+                                    <th scope="col"> <a href="{{ route('body', ['id' => $name->id]) }}"
+                                            class="btn btn-warning">แก้ไข</a>
                                         <a class="btn btn-danger" role="button" href="{{ url('/') }}">ลบ</a>
                                     </th>
 
@@ -227,7 +215,7 @@
                                             <i class="bi bi-x-circle" style="color: #f74354;"></i>
                                         @endif
                                         <th scope="col" colspan="4">ผ่านการทดสอบ</th>
-                                        //คำนวณ
+
                                     </tr>
                                 </thead>
                                 <thead>
@@ -251,8 +239,8 @@
                                     </td>
 
 
-                                    <th scope="col"> <a class="btn btn-warning" role="button"
-                                            href="{{ url('/') }}">แก้ไข</a>
+                                    <th scope="col"> <a href="{{ route('theory', ['id' => $name->id]) }}"
+                                            class="btn btn-warning">แก้ไข</a>
                                         <a class="btn btn-danger" role="button" href="{{ url('/') }}">ลบ</a>
                                     </th>
                                 </tr>
@@ -268,8 +256,8 @@
                                     </td>
 
 
-                                    <th scope="col"> <a class="btn btn-warning" role="button"
-                                            href="{{ url('/') }}">แก้ไข</a>
+                                    <th scope="col"> <a href="{{ route('theory', ['id' => $name->id]) }}"
+                                            class="btn btn-warning">แก้ไข</a>
                                         <a class="btn btn-danger" role="button" href="{{ url('/') }}">ลบ</a>
                                     </th>
                                 </tr>
@@ -285,8 +273,8 @@
                                     </td>
 
 
-                                    <th scope="col"> <a class="btn btn-warning" role="button"
-                                            href="{{ url('/') }}">แก้ไข</a>
+                                    <th scope="col"> <a href="{{ route('theory', ['id' => $name->id]) }}"
+                                            class="btn btn-warning">แก้ไข</a>
                                         <a class="btn btn-danger" role="button" href="{{ url('/') }}">ลบ</a>
                                     </th>
                                 </tr>
@@ -319,8 +307,8 @@
                                 </td>
 
 
-                                <th scope="col"> <a class="btn btn-warning" role="button"
-                                        href="{{ url('/') }}">แก้ไข</a>
+                                <th scope="col"> <a href="{{ route('operate', ['id' => $name->id]) }}"
+                                        class="btn btn-warning">แก้ไข</a>
                                     <a class="btn btn-danger" role="button" href="{{ url('/') }}">ลบ</a>
                                 </th>
                             </tr>
