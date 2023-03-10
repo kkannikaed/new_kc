@@ -12,6 +12,7 @@ yellow #ffc107
 
 
 git put 
+php artisan serve 
 git pull
 
 
