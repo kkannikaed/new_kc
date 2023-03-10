@@ -227,7 +227,7 @@
                                             <i class="bi bi-x-circle" style="color: #f74354;"></i>
                                         @endif
                                         <th scope="col" colspan="4">ผ่านการทดสอบ</th>
-
+                                        //คำนวณ
                                     </tr>
                                 </thead>
                                 <thead>
