@@ -102,7 +102,7 @@ class WebController extends Controller
 
         $id = $req->user_id;
 
-        return view('testbody', compact('test_body', 'id'));
+        return redirect()->route('option', compact('test_body', 'id'));
     }
 
     public function saveTestTheory(Request $req)
@@ -117,7 +117,7 @@ class WebController extends Controller
 
         $id = $req->user_id;
 
-        return view('testtheory', compact('test_theory', 'id'));
+        return redirect()->route('option', compact('test_theory', 'id'));
     }
 
     public function saveTestOperate(Request $req)
@@ -130,7 +130,7 @@ class WebController extends Controller
 
         $id = $req->user_id;
 
-        return view('testoperate', compact('test_operate', 'id'));
+        return redirect()->route('option', compact('test_operate', 'id'));
     }
 
 }

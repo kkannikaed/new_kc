@@ -117,30 +117,45 @@
                         </div>
                     </div>
 
-                    <!-- Table -->
+                    {{-- Table --}}
                     <div class="container py-5">
-                        <table class="table  table-light table-striped-columns">
+                        <table class="table table-light table-striped-columns">
 
                             <thead>
                                 <tr>
 
-                                    <th scope="col" colspan="4" style="background-color: #508bfc;">ทดสอบร่างกาย
+                                    <th scope="col" colspan="4" style="background-color:#508bfc;">ทดสอบร่างกาย
                                     </th>
 
                                 </tr>
 
 
                             </thead>
+                            <?php
+                            $sumcheck = 0;
+                            $waitcheck = 0;
+                            ?>
+
+
                             <tbody>
                                 <tr>
                                     <th scope="row">1</th>
                                     <td>ทดสอบตาบอดสี</td>
                                     <td>
-                                        @if ($test_body->eyecolor == 1)
+                                        @if (@$test_body->eyecolor === null)
+                                            <?php
+                                            $waitcheck = 1;
+                                            ?>
+                                            <i class="bi bi-dash-circle" style="color: #ffc107;"></i>
+                                        @elseif (@$test_body->eyecolor == 1)
+                                            <?php
+                                            $sumcheck = $sumcheck + 1;
+                                            ?>
                                             <i class="bi bi-check-circle" style="color: #4bae4f;"></i>
-                                        @elseif ($test_body->eyecolor == 0)
+                                        @elseif (@$test_body->eyecolor == 0)
                                             <i class="bi bi-x-circle" style="color: #f74354;"></i>
                                         @endif
+
 
                                     </td>
 
@@ -155,10 +170,17 @@
                                     <th scope="row">2</th>
                                     <td>ทดสอบตาสายตายาว</td>
                                     <td>
-
-                                        @if ($test_body->longsighted == 1)
+                                        @if (@$test_body->longsighted === null)
+                                            <?php
+                                            $waitcheck = 1;
+                                            ?>
+                                            <i class="bi bi-dash-circle" style="color: #ffc107;"></i>
+                                        @elseif (@$test_body->longsighted == 1)
+                                            <?php
+                                            $sumcheck = $sumcheck + 1;
+                                            ?>
                                             <i class="bi bi-check-circle" style="color: #4bae4f;"></i>
-                                        @elseif ($test_body->longsighted == 0)
+                                        @elseif (@$test_body->longsighted == 0)
                                             <i class="bi bi-x-circle" style="color: #f74354;"></i>
                                         @endif
                                     </td>
@@ -173,10 +195,17 @@
                                     <th scope="row">3</th>
                                     <td>ทดสอบสายตาเอียง</td>
                                     <td>
-
-                                        @if ($test_body->astigmatism == 1)
+                                        @if (@$test_body->astigmatism === null)
+                                            <?php
+                                            $waitcheck = 1;
+                                            ?>
+                                            <i class="bi bi-dash-circle" style="color: #ffc107;"></i>
+                                        @elseif (@$test_body->astigmatism == 1)
+                                            <?php
+                                            $sumcheck = $sumcheck + 1;
+                                            ?>
                                             <i class="bi bi-check-circle" style="color: #4bae4f;"></i>
-                                        @elseif ($test_body->astigmatism == 0)
+                                        @elseif (@$test_body->astigmatism == 0)
                                             <i class="bi bi-x-circle" style="color: #f74354;"></i>
                                         @endif
                                     </td>
@@ -193,9 +222,17 @@
                                     <td>ทดสอบการตอบสนองของร่างกาย</td>
                                     <td>
 
-                                        @if ($test_body->response == 1)
+                                        @if (@$test_body->response === null)
+                                            <?php
+                                            $waitcheck = 1;
+                                            ?>
+                                            <i class="bi bi-dash-circle" style="color: #ffc107;"></i>
+                                        @elseif (@$test_body->response == 1)
+                                            <?php
+                                            $sumcheck = $sumcheck + 1;
+                                            ?>
                                             <i class="bi bi-check-circle" style="color: #4bae4f;"></i>
-                                        @elseif ($test_body->response == 0)
+                                        @elseif (@$test_body->response == 0)
                                             <i class="bi bi-x-circle" style="color: #f74354;"></i>
                                         @endif
                                     </td>
@@ -208,17 +245,36 @@
 
                                 </tr>
                                 <thead>
-                                    <tr>
-                                        @if ($test_body->response == 1)
-                                            <i class="bi bi-check-circle" style="color: #4bae4f;"></i>
-                                        @elseif ($test_body->response == 0)
-                                            <i class="bi bi-x-circle" style="color: #f74354;"></i>
-                                        @endif
-                                        <th scope="col" colspan="4">ผ่านการทดสอบ</th>
 
-                                    </tr>
+
+                                    <th scope="col" colspan="4">
+                                        @if (@$waitcheck == 0)
+                                            @if (@$sumcheck >= 3)
+                                                <button type="button" class="btn btn-success"
+                                                    style="font-weight: 700">ผ่านการทดสอบ</button>
+                                            @elseif (@$sumcheck < 3)
+                                                <button type="button" class="btn btn-danger"
+                                                    style="font-weight: 700">ไม่ผ่านการทดสอบ</button>
+                                            @endif
+                                        @elseif(@$waitcheck == 1)
+                                            <button type="button" class="btn btn-warning"
+                                                style="font-weight: 700">รอการพิจารณา</button>
+                                        @endif
+
+                                    </th>
+
+
                                 </thead>
                                 <thead>
+                                    <?php
+                                    $check_wait = 0;
+                                    $sumtotal_traffic_sign = @$test_theory->traffic_sign;
+                                    $sumtotal_traffic_lines = @$test_theory->traffic_lines;
+                                    $sumtotal_giving_way = @$test_theory->giving_way;
+                                    $sumtotal = $sumtotal_traffic_sign + $sumtotal_traffic_lines + $sumtotal_giving_way;
+                                    ?>
+
+
                                     <tr>
 
                                         <th scope="col" colspan="4" style="background-color: #508bfc;">
@@ -228,15 +284,24 @@
                                 </thead>
                                 <tr>
                                     <th scope="row">1</th>
-                                    <td>ป้ายจราจร</td>
+                                    <td>ป้ายจราจร </td>
+
+
                                     <td>
-                                        @if ($test_theory->traffic_sign >= 45)
+                                        @if (@$test_theory->traffic_sign == null)
+                                            <?php
+                                            $check_wait = 1;
+                                            ?>
+                                            <i class="bi bi-dash-circle" style="color: #ffc107;"></i>
+                                        @elseif (@$test_theory->traffic_sign >= 45)
                                             <i class="bi bi-check-circle" style="color: #4bae4f;"></i>
-                                        @elseif ($test_theory->traffic_sign < 45)
+                                        @elseif (@$test_theory->traffic_sign < 45)
                                             <i class="bi bi-x-circle" style="color: #f74354;"></i>
                                         @endif
 
                                     </td>
+
+
 
 
                                     <th scope="col"> <a href="{{ route('theory', ['id' => $name->id]) }}"
@@ -248,12 +313,19 @@
                                     <th scope="row">2</th>
                                     <td>เส้นจราจร</td>
                                     <td>
-                                        @if ($test_theory->traffic_lines >= 45)
+                                        @if (@$test_theory->traffic_lines == null)
+                                            <?php
+                                            $check_wait = 1;
+                                            ?>
+                                            <i class="bi bi-dash-circle" style="color: #ffc107;"></i>
+                                        @elseif (@$test_theory->traffic_lines >= 45)
                                             <i class="bi bi-check-circle" style="color: #4bae4f;"></i>
-                                        @elseif ($test_theory->traffic_lines < 45)
+                                        @elseif (@$test_theory->traffic_lines < 45)
                                             <i class="bi bi-x-circle" style="color: #f74354;"></i>
                                         @endif
                                     </td>
+
+
 
 
                                     <th scope="col"> <a href="{{ route('theory', ['id' => $name->id]) }}"
@@ -265,9 +337,14 @@
                                     <th scope="row">3</th>
                                     <td>การให้ทาง</td>
                                     <td>
-                                        @if ($test_theory->giving_way >= 45)
+                                        @if (@$test_theory->giving_way == null)
+                                            <?php
+                                            $check_wait = 1;
+                                            ?>
+                                            <i class="bi bi-dash-circle" style="color: #ffc107;"></i>
+                                        @elseif (@$test_theory->giving_way >= 45)
                                             <i class="bi bi-check-circle" style="color: #4bae4f;"></i>
-                                        @elseif ($test_theory->giving_way < 45)
+                                        @elseif (@$test_theory->giving_way < 45)
                                             <i class="bi bi-x-circle" style="color: #f74354;"></i>
                                         @endif
                                     </td>
@@ -282,7 +359,29 @@
                             <thead>
                                 <tr>
 
-                                    <th scope="col" colspan="4">รอพิจารณา</th>
+                                    <th scope="col" colspan="4" style="">คะแนนรวมทั้งหมด :
+                                        {{ $sumtotal }}
+                                        คะแนน
+                                    </th>
+
+                                </tr>
+                                <tr>
+                                    <thead>
+                                        <th scope="col" colspan="4">
+                                            @if (@$check_wait == 0)
+                                                @if (@$sumtotal >= 120)
+                                                    <button type="button" class="btn btn-success"
+                                                        style="font-weight: 700">ผ่านการทดสอบ</button>
+                                                @elseif (@$sumtotal < 120)
+                                                    <button type="button" class="btn btn-danger"
+                                                        style="font-weight: 700">ไม่ผ่านการทดสอบ</button>
+                                                @endif
+                                            @elseif(@$check_wait == 1)
+                                                <button type="button" class="btn btn-warning"
+                                                    style="font-weight: 700">รอการพิจารณา</button>
+                                            @endif
+                                        </th>
+                                    </thead>
 
                                 </tr>
                             </thead>
@@ -298,9 +397,11 @@
                                 <th scope="row">1</th>
                                 <td>ภาคปฏิบัติ</td>
                                 <td>
-                                    @if ($test_operate->check == 1)
+                                    @if (@$test_operate->check === null)
+                                        <i class="bi bi-dash-circle" style="color: #ffc107;"></i>
+                                    @elseif (@$test_operate->check == 1)
                                         <i class="bi bi-check-circle" style="color: #4bae4f;"></i>
-                                    @elseif ($test_operate->check == 0)
+                                    @elseif (@$test_operate->check == 0)
                                         <i class="bi bi-x-circle" style="color: #f74354;"></i>
                                     @endif
                                     </i>
@@ -318,10 +419,19 @@
                                 <tr>
 
                                     <th scope="col" colspan="4">
-                                        @if ($test_operate->check == 1)
-                                            <p style="color: #4bae4f">ผ่านการทดสอบ</p></i>
-                                        @elseif ($test_operate->check == 0)
-                                            <p style="color:#f74354">ไม่ผ่านการทดสอบ</p></i>
+
+                                        @if (@$test_operate->check === null)
+                                            {{-- <p style="color: #ffc107;">รอการพิจารณา</p> --}}
+                                            <button type="button" class="btn btn-warning"
+                                                style="font-weight: 700">รอการพิจารณา</button>
+                                        @elseif (@$test_operate->check == 1)
+                                            {{-- <p style="color: #4bae4f">ผ่านการทดสอบ</p> --}}
+                                            <button type="button" class="btn btn-success"
+                                                style="font-weight: 700">ผ่านการทดสอบ</button>
+                                        @elseif (@$test_operate->check == 0)
+                                            {{-- <p style="color:#f74354">ไม่ผ่านการทดสอบ</p> --}}
+                                            <button type="button" class="btn btn-danger"
+                                                style="font-weight: 700">ไม่ผ่านการทดสอบ</button>
                                         @endif
                                     </th>
 

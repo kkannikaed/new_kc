@@ -70,14 +70,14 @@
 
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="eyecolor" id="eyecolor-pass"
-                                        value="1" required>
+                                        value="1">
                                     <label class="form-check-label" for="eyecolor-pass">
                                         ผ่านการทดสอบ
                                     </label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="eyecolor" id="eyecolor-fail"
-                                        value="0" required>
+                                        value="0">
                                     <label class="form-check-label" for="eyecolor-fail">
                                         ไม่ผ่านการทดสอบ
                                     </label>
@@ -90,14 +90,14 @@
 
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="longsighted"
-                                        id="longsighted-pass" value="1" required>
+                                        id="longsighted-pass" value="1">
                                     <label class="form-check-label" for="longsighted-pass">
                                         ผ่านการทดสอบ
                                     </label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="longsighted"
-                                        id="longsighted-fail" value="0" required>
+                                        id="longsighted-fail" value="0">
                                     <label class="form-check-label" for="longsighted-fail">
                                         ไม่ผ่านการทดสอบ
                                     </label>
@@ -111,14 +111,14 @@
 
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="astigmatism"
-                                        id="astigmatism-pass" value="1" required>
+                                        id="astigmatism-pass" value="1">
                                     <label class="form-check-label" for="astigmatism-pass">
                                         ผ่านการทดสอบ
                                     </label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="astigmatism"
-                                        id="astigmatism-fail" value="0" required>
+                                        id="astigmatism-fail" value="0">
                                     <label class="form-check-label" for="astigmatism-fail">
                                         ไม่ผ่านการทดสอบ
                                     </label>
@@ -133,14 +133,14 @@
 
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="response" id="response-pass"
-                                        value="1" required>
+                                        value="1">
                                     <label class="form-check-label" for="response-pass">
                                         ผ่านการทดสอบ
                                     </label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="response" id="response-fail"
-                                        value="0" required>
+                                        value="0">
                                     <label class="form-check-label" for="response-fail">
                                         ไม่ผ่านการทดสอบ
                                     </label>
