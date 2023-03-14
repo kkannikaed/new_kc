@@ -65,7 +65,8 @@
                                         placeholder="นามสกุล" />
                                 </div>
                                 <button type="submit" class="btn btn-primary" role="button">บันทึก</button>
-                                <a class="btn btn-danger" role="button" href="{{ url('/welcome') }}">ข้อมูลรายงาน</a>
+                                <a class="btn btn-danger" role="button" href="{{ url('/welcome') }}"
+                                    style="font-weight: 700">ข้อมูลรายงาน</a>
                             </div>
                         </div>
                     </div>

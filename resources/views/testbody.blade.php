@@ -150,7 +150,9 @@
 
                             <div class=" p-5 text-center">
                                 <button type="submit" class="btn btn-primary" role="button">บันทึก</button>
-                                <a class="btn btn-primary" role="button" href="{{ url('/') }}">ย้อนกลับ</a>
+                                {{-- <a class="btn btn-primary" role="button"
+                                    href="{{ url('/list_option', ['id' => $name->id]) }}">ย้อนกลับ</a> --}}
+                                <a href="{{ route('savename') }}" class="btn btn-primary">ย้อนกลับ</a>
                             </div>
                         </div>
                     </div>

@@ -440,7 +440,11 @@
                         </table>
                     </div>
 
-
+                    <div class=" p-5 text-center">
+                        <button type="submit" class="btn btn-primary" role="button"
+                            style="font-weight: 700;">บันทึก</button>
+                        <a class="btn btn-danger" role="button" href="{{ url('/') }}">ย้อนกลับ</a>
+                    </div>
 
 
                 </div>

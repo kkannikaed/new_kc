@@ -15,6 +15,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@100&display=swap" rel="stylesheet">
 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<link href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" rel="stylesheet">
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+
+
+
 <style>
     * {
         font-family: 'Kanit', sans-serif;
@@ -45,7 +51,7 @@
 
 <body>
 
-    <form method="POST" class="form-horizontal" action="{{ route('savename') }}">
+    <form method="POST" class="form-horizontal" action="">
         @csrf
 
         <section class="vh-100">
@@ -54,11 +60,8 @@
 
                 <div class="row d-flex justify-content-center align-items-center h-100">
 
-                    <div class="form-group has-search">
-                        <span class=" form-control-feedback"></span>
-                        <input type="text" class="form-control" placeholder="Search">
-                    </div>
-                    <table class="table">
+
+                    <table class="table" id="tabledrive">
                         <thead>
 
                             <tr>
@@ -71,44 +74,70 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                        fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
-                                        <path
-                                            d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                                        <path
-                                            d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
-                                    </svg></td>
-                                <td>@mdo</td>
-                                <td>@mdo</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                        fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
-                                        <path
-                                            d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                                        <path
-                                            d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-                                    </svg></td>
-                                <td>@fat</td>
-                                <td>@mdo</td>
-                                <td>@mdo</td>
+                            @foreach ($names as $name)
+                                <tr>
+                                    <td scope="row">{{ $name->id }}</td>
+                                    <td>{{ $name->fname }} {{ $name->lname }}</td>
+                                    <?php
+                                    
+                                    $sumtest_body = $name->TestBody->eyecolor + $name->TestBody->longsighted + $name->TestBody->astigmatism + $name->TestBody->response;
+                                    
+                                    $sumtest_theory = $name->TestTheory->traffic_sign + $name->TestTheory->traffic_lines + $name->TestTheory->giving_way;
+                                    // dd($sumtest_theory);
+                                    
+                                    $sumtest_operate = $name->TestOperate->check;
+                                    // dd($sumtest_operate);
+                                    
+                                    $status_total = 0;
+                                    ?>
 
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Larry the Bird</td>
-                                <td>@twitter</td>
-                                <td>@mdo</td>
-                                <td>@mdo</td>
-                                <td>@mdo</td>
 
-                            </tr>
+                                    <td>
+                                        @if (@$sumtest_body >= 3)
+                                            <p style="color: #4bae4f">ผ่านการทดสอบ</p>
+                                            <?php
+                                            $status_total = $status_total + 1;
+                                            ?>
+                                        @elseif (@$sumtest_body < 3)
+                                            <p style="color: #f74354;">ไม่ผ่านการทดสอบ</p>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if (@$sumtest_theory >= 120)
+                                            <p style="color: #4bae4f">ผ่านการทดสอบ</p>
+                                            <?php
+                                            $status_total = $status_total + 1;
+                                            ?>
+                                        @elseif (@$sumtest_theory < 120)
+                                            <p style="color: #f74354;">ไม่ผ่านการทดสอบ</p>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if (@$sumtest_operate == 1)
+                                            <p style="color: #4bae4f">ผ่านการทดสอบ</p>
+                                            <?php
+                                            $status_total = $status_total + 1;
+                                            ?>
+                                        @elseif (@$sumtest_operate == 0)
+                                            <p style="color: #f74354;">ไม่ผ่านการทดสอบ</p>
+                                        @endif
+                                    </td>
+                                    <td>
+
+
+                                        @if (@$status_total >= 3)
+                                            <button type="button" class="btn btn-success"
+                                                style="font-weight: 700">ผ่านการทดสอบ</button>
+                                        @elseif (@$status_total < 3)
+                                            <button type="button" class="btn btn-danger"
+                                                style="font-weight: 700">ไม่ผ่านการทดสอบ</button>
+                                        @endif
+
+
+                                    </td>
+                                </tr>
+                            @endforeach
+
                         </tbody>
                     </table>
 
@@ -119,12 +148,14 @@
         </section>
 
 
-
-
-
-
     </form>
 
 </body>
 
 </html>
+
+<script>
+    $(document).ready(function() {
+        $('#tabledrive').DataTable();
+    });
+</script>

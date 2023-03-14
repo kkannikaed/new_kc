@@ -23,7 +23,11 @@ class WebController extends Controller
     public function welcome()
     {
 
-        return view('welcome');
+        $names = NameTable::with('TestBody', 'TestOperate', 'TestTheory')->has('TestBody')->has('TestOperate')->has('TestTheory')->get();
+        // return $names;
+
+        // return view('welcome');
+        return view('welcome', compact('names'));
 
     }
 
@@ -132,5 +136,19 @@ class WebController extends Controller
 
         return redirect()->route('option', compact('test_operate', 'id'));
     }
+
+    // public function saveData(Request $req)
+    // {
+
+    //     $data = new DataTable;
+    //     $data->fname = $req->fname;
+    //     $name->lname = $req->lname;
+    //     $name->updated_at = $req->updated_at;
+    //     $name->save();
+
+    //     // return view('list_option', compact('name'));
+    //     return redirect()->route('welcome', ['id' => $name->id]);
+
+    // }
 
 }

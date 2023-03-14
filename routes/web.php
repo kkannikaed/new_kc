@@ -24,6 +24,8 @@ Route::get('/', [WebController::class, 'home'])->name('home');
 
 Route::get('/welcome', [WebController::class, 'welcome'])->name('welcome');
 
+Route::post('/welcome', [WebController::class, 'welcome'])->name('welcome');
+
 Route::get('/testdrive', [WebController::class, 'drive'])->name('drive');
 
 Route::get('/testbody', [WebController::class, 'body'])->name('body');
@@ -43,3 +45,5 @@ Route::post('/save-test-body', [WebController::class, 'saveTestBody'])->name('sa
 Route::post('/save-test-theory', [WebController::class, 'saveTestTheory'])->name('save-test-theory');
 
 Route::post('/save-test-operate', [WebController::class, 'saveTestOperate'])->name('save-test-operate');
+
+Route::get('/savedata', [WebController::class, 'saveDame'])->name('savedata');
