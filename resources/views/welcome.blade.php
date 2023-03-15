@@ -142,7 +142,9 @@
                     </table>
 
                 </div>
-                <a class="btn btn-warning" role="button" href="{{ url('/') }}">ย้อนกลับ</a>
+                <div class=" p-5 text-center">
+                    <a class="btn btn-warning" role="button" href="{{ url('/') }}">ย้อนกลับ</a>
+                </div>
             </div>
 
         </section>

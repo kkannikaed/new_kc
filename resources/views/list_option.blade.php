@@ -16,6 +16,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@100&display=swap" rel="stylesheet">
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
 <style>
     * {
         font-family: 'Kanit', sans-serif;
@@ -37,6 +40,11 @@
 
     a.btn.btn-primary {
         font-weight: 700;
+    }
+
+    th.editdelete {
+        border-style: solid;
+        background: #e8e8e8;
     }
 </style>
 
@@ -124,8 +132,12 @@
                             <thead>
                                 <tr>
 
-                                    <th scope="col" colspan="4" style="background-color:#508bfc;">ทดสอบร่างกาย
+                                    <th scope="col" colspan="2" style="background-color:#8eb6f0;">ทดสอบร่างกาย
                                     </th>
+
+                                    <th scope="col" class="colorstatus" style="background-color:#508bfc;">สถานะ
+                                    </th>
+
 
                                 </tr>
 
@@ -134,6 +146,7 @@
                             <?php
                             $sumcheck = 0;
                             $waitcheck = 0;
+                            $checkyellow = 0;
                             ?>
 
 
@@ -160,12 +173,8 @@
                                     </td>
 
 
-                                    <th scope="col">
-                                        <a href="{{ route('body', ['id' => $name->id]) }}"
-                                            class="btn btn-warning">แก้ไข</a>
-                                        <a class="btn btn-danger" role="button" href="{{ url('/') }}">ลบ</a>
-                                    </th>
                                 </tr>
+
                                 <tr>
                                     <th scope="row">2</th>
                                     <td>ทดสอบตาสายตายาว</td>
@@ -186,10 +195,7 @@
                                     </td>
 
 
-                                    <th scope="col"> <a href="{{ route('body', ['id' => $name->id]) }}"
-                                            class="btn btn-warning">แก้ไข</a>
-                                        <a class="btn btn-danger" role="button" href="{{ url('/') }}">ลบ</a>
-                                    </th>
+
                                 </tr>
                                 <tr>
                                     <th scope="row">3</th>
@@ -210,11 +216,6 @@
                                         @endif
                                     </td>
 
-
-                                    <th scope="col"> <a href="{{ route('body', ['id' => $name->id]) }}"
-                                            class="btn btn-warning">แก้ไข</a>
-                                        <a class="btn btn-danger" role="button" href="{{ url('/') }}">ลบ</a>
-                                    </th>
 
                                 </tr>
                                 <tr>
@@ -238,16 +239,26 @@
                                     </td>
 
 
-                                    <th scope="col"> <a href="{{ route('body', ['id' => $name->id]) }}"
-                                            class="btn btn-warning">แก้ไข</a>
-                                        <a class="btn btn-danger" role="button" href="{{ url('/') }}">ลบ</a>
-                                    </th>
 
                                 </tr>
+
+                                <thead>
+
+                                    <th scope="col" colspan="3" class="editdelete"> <a
+                                            href="{{ route('body', ['id' => $name->id]) }}"
+                                            class="btn btn-warning">แก้ไข</a>
+                                        <a class="btn btn-danger d-none" role="button"
+                                            href="{{ route('deletebody', ['id' => $name->id]) }}"
+                                            id="btn-deletebody">ลบ</a>
+                                        <a class="btn btn-danger" onclick="deleteBody({{ @$test_body->id }})"
+                                            role="button">ลบ</a>
+                                    </th>
+
+                                </thead>
                                 <thead>
 
 
-                                    <th scope="col" colspan="4">
+                                    <th scope="col" colspan="3">
                                         @if (@$waitcheck == 0)
                                             @if (@$sumcheck >= 3)
                                                 <button type="button" class="btn btn-success"
@@ -259,6 +270,9 @@
                                         @elseif(@$waitcheck == 1)
                                             <button type="button" class="btn btn-warning"
                                                 style="font-weight: 700">รอการพิจารณา</button>
+                                            <?php
+                                            $checkyellow = $checkyellow + 1;
+                                            ?>
                                         @endif
 
                                     </th>
@@ -277,8 +291,13 @@
 
                                     <tr>
 
-                                        <th scope="col" colspan="4" style="background-color: #508bfc;">
+                                        <th scope="col" colspan="2" style="background-color: #8eb6f0;">
                                             ทดสอบทฤษฎี</th>
+
+                                        <th scope="col" style="background-color:#508bfc;">สถานะ
+                                        </th>
+
+
 
                                     </tr>
                                 </thead>
@@ -301,13 +320,6 @@
 
                                     </td>
 
-
-
-
-                                    <th scope="col"> <a href="{{ route('theory', ['id' => $name->id]) }}"
-                                            class="btn btn-warning">แก้ไข</a>
-                                        <a class="btn btn-danger" role="button" href="{{ url('/') }}">ลบ</a>
-                                    </th>
                                 </tr>
                                 <tr>
                                     <th scope="row">2</th>
@@ -325,13 +337,6 @@
                                         @endif
                                     </td>
 
-
-
-
-                                    <th scope="col"> <a href="{{ route('theory', ['id' => $name->id]) }}"
-                                            class="btn btn-warning">แก้ไข</a>
-                                        <a class="btn btn-danger" role="button" href="{{ url('/') }}">ลบ</a>
-                                    </th>
                                 </tr>
                                 <tr>
                                     <th scope="row">3</th>
@@ -349,47 +354,60 @@
                                         @endif
                                     </td>
 
-
-                                    <th scope="col"> <a href="{{ route('theory', ['id' => $name->id]) }}"
-                                            class="btn btn-warning">แก้ไข</a>
-                                        <a class="btn btn-danger" role="button" href="{{ url('/') }}">ลบ</a>
-                                    </th>
                                 </tr>
                             </tbody>
                             <thead>
                                 <tr>
 
-                                    <th scope="col" colspan="4" style="">คะแนนรวมทั้งหมด :
+                                    <th scope="col" colspan="3" style="">คะแนนรวมทั้งหมด :
                                         {{ $sumtotal }}
                                         คะแนน
                                     </th>
 
                                 </tr>
-                                <tr>
-                                    <thead>
-                                        <th scope="col" colspan="4">
-                                            @if (@$check_wait == 0)
-                                                @if (@$sumtotal >= 120)
-                                                    <button type="button" class="btn btn-success"
-                                                        style="font-weight: 700">ผ่านการทดสอบ</button>
-                                                @elseif (@$sumtotal < 120)
-                                                    <button type="button" class="btn btn-danger"
-                                                        style="font-weight: 700">ไม่ผ่านการทดสอบ</button>
-                                                @endif
-                                            @elseif(@$check_wait == 1)
-                                                <button type="button" class="btn btn-warning"
-                                                    style="font-weight: 700">รอการพิจารณา</button>
-                                            @endif
-                                        </th>
-                                    </thead>
+                                <thead>
+                                    <th scope="col" colspan="3" class="editdelete"> <a
+                                            href="{{ route('theory', ['id' => $name->id]) }}"
+                                            class="btn btn-warning">แก้ไข</a>
+                                        <a class="btn btn-danger d-none" role="button"
+                                            href="{{ route('deletetheory', ['id' => $name->id]) }}"
+                                            id="btn-deletetheory">ลบ</a>
+                                        <a class="btn btn-danger" onclick="deleteTheory({{ @$test_theory->id }})"
+                                            role="button">ลบ</a>
+                                    </th>
 
-                                </tr>
+                                </thead>
+                                <thead>
+                                    <th scope="col" colspan="3">
+                                        @if (@$check_wait == 0)
+                                            @if (@$sumtotal >= 120)
+                                                <button type="button" class="btn btn-success"
+                                                    style="font-weight: 700">ผ่านการทดสอบ</button>
+                                            @elseif (@$sumtotal < 120)
+                                                <button type="button" class="btn btn-danger"
+                                                    style="font-weight: 700">ไม่ผ่านการทดสอบ</button>
+                                            @endif
+                                        @elseif(@$check_wait == 1)
+                                            <button type="button" class="btn btn-warning"
+                                                style="font-weight: 700">รอการพิจารณา</button>
+                                            <?php
+                                            $checkyellow = $checkyellow + 1;
+                                            ?>
+                                        @endif
+                                    </th>
+                                </thead>
+
                             </thead>
                             <thead>
                                 <tr>
 
-                                    <th scope="col" colspan="4" style="background-color: #508bfc;">ทดสอบปฏิบัติ
+                                    <th scope="col" colspan="2" style="background-color: #8eb6f0;">ทดสอบปฏิบัติ
                                     </th>
+
+                                    <th scope="col" style="background-color:#508bfc;">สถานะ
+                                    </th>
+
+
 
                                 </tr>
                             </thead>
@@ -408,17 +426,25 @@
                                 </td>
 
 
-                                <th scope="col"> <a href="{{ route('operate', ['id' => $name->id]) }}"
-                                        class="btn btn-warning">แก้ไข</a>
-                                    <a class="btn btn-danger" role="button" href="{{ url('/') }}">ลบ</a>
-                                </th>
                             </tr>
 
                             </tbody>
                             <thead>
+                                <th scope="col" colspan="3" class="editdelete"> <a
+                                        href="{{ route('operate', ['id' => $name->id]) }}"
+                                        class="btn btn-warning">แก้ไข</a>
+                                    <a class="btn btn-danger d-none" role="button"
+                                        href="{{ route('deleteoperate', ['id' => $name->id]) }}"
+                                        id="btn-deleteoperate">ลบ</a>
+                                    <a class="btn btn-danger" onclick="deleteOperate({{ @$test_operate->id }})"
+                                        role="button">ลบ</a>
+                                </th>
+
+                            </thead>
+                            <thead>
                                 <tr>
 
-                                    <th scope="col" colspan="4">
+                                    <th scope="col" colspan="3">
 
                                         @if (@$test_operate->check === null)
                                             {{-- <p style="color: #ffc107;">รอการพิจารณา</p> --}}
@@ -432,6 +458,9 @@
                                             {{-- <p style="color:#f74354">ไม่ผ่านการทดสอบ</p> --}}
                                             <button type="button" class="btn btn-danger"
                                                 style="font-weight: 700">ไม่ผ่านการทดสอบ</button>
+                                            <?php
+                                            $checkyellow = $checkyellow + 1;
+                                            ?>
                                         @endif
                                     </th>
 
@@ -440,18 +469,27 @@
                         </table>
                     </div>
 
-                    <div class=" p-5 text-center">
-                        <button type="submit" class="btn btn-primary" role="button"
-                            style="font-weight: 700;">บันทึก</button>
+                    <div class="p-5 text-center">
+                        <a class="btn btn-primary d-none" role="button" href="{{ url('/welcome') }}"
+                            id="btn-savedata">บันทึก</a>
+                        <a class="btn btn-primary" onclick="saveData()" role="button">บันทึก</a>
                         <a class="btn btn-danger" role="button" href="{{ url('/') }}">ย้อนกลับ</a>
-                    </div>
 
+
+                        {{-- <a class="btn btn-primary" type="submit" role="button" style="font-weight: 700;"
+                            href="{{ url('/welcome') }}">บันทึก </a>
+                        <a class="btn btn-danger" role="button" style="font-weight: 700;"
+                            href="{{ url('/') }}">ย้อนกลับ</a> --}}
+                    </div>
 
                 </div>
 
 
 
+
             </div>
+
+
         </section>
 
     </form>
@@ -465,3 +503,137 @@
 </body>
 
 </html>
+
+<script>
+    function deleteBody(id) {
+        if (typeof id !== "undefined") {
+            Swal.fire({
+                title: 'คุณแน่ใจจะลบ?',
+                text: "คุณต้องการจะลบการทดสอบ!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'ยืนยัน',
+                cancelButtonText: 'ยกเลิก',
+
+            }).then((result) => {
+                if (result.isConfirmed) { //กดยืนยัน
+                    window.location.replace("/deletebody/" + id);
+
+                }
+            })
+        } else {
+            Swal.fire({
+                title: 'กรุณาทำแบบทดสอบ',
+                confirmButtonText: 'ยืนยัน',
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutUp'
+                }
+            })
+        }
+    }
+
+    function deleteTheory(id) {
+        if (typeof id !== "undefined") {
+            Swal.fire({
+                title: 'คุณแน่ใจจะลบ?',
+                text: "คุณต้องการจะลบการทดสอบ!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'ยืนยัน',
+                cancelButtonText: 'ยกเลิก',
+
+            }).then((result) => {
+                if (result.isConfirmed) { //กดยืนยัน
+                    window.location.replace("/deletetheory/" + id);
+
+                }
+            })
+        } else {
+            Swal.fire({
+                title: 'กรุณาทำแบบทดสอบ',
+                confirmButtonText: 'ยืนยัน',
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutUp'
+                }
+            })
+        }
+
+    }
+
+    function deleteOperate(id) {
+        if (typeof id !== "undefined") {
+            Swal.fire({
+                title: 'คุณแน่ใจจะลบ?',
+                text: "คุณต้องการจะลบการทดสอบ!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'ยืนยัน',
+                cancelButtonText: 'ยกเลิก',
+
+            }).then((result) => {
+                if (result.isConfirmed) { //กดยืนยัน
+                    window.location.replace("/deleteoperate/" + id);
+
+                }
+            })
+        } else {
+            Swal.fire({
+                title: 'กรุณาทำแบบทดสอบ',
+                confirmButtonText: 'ยืนยัน',
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutUp'
+                }
+            })
+        }
+
+    }
+
+    function saveData(id) {
+
+        if (typeof id !== "undefined") {
+            Swal.fire({
+                title: 'คุณต้องการบันทึกการทดสอบ?',
+                text: "คุณต้องการบันทึกการทดสอบ!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'บันทึก',
+                cancelButtonText: 'ยกเลิก',
+
+            }).then((result) => {
+                if (result.isConfirmed) { //กดยืนยัน
+                    window.location.replace("/welcome/" + id);
+
+                }
+            })
+        } else {
+            Swal.fire({
+                title: 'กรุณาทำแบบทดสอบทุกขั้นตอนให้ครบถ้วน',
+                confirmButtonText: 'ยืนยัน',
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutUp'
+                }
+            })
+        }
+
+    }
+</script>

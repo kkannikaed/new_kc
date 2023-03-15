@@ -140,15 +140,41 @@ class WebController extends Controller
     // public function saveData(Request $req)
     // {
 
-    //     $data = new DataTable;
     //     $data->fname = $req->fname;
-    //     $name->lname = $req->lname;
+    //     $data->lname = $req->lname;
     //     $name->updated_at = $req->updated_at;
     //     $name->save();
 
-    //     // return view('list_option', compact('name'));
-    //     return redirect()->route('welcome', ['id' => $name->id]);
-
+    //     return redirect()->route('welcome', ['id' => $data->id]);
     // }
 
+    public function deleteBody($id)
+    {
+        $test_body = TestBody::where('id', '=', $id)->first();
+        $id = $test_body->user_id;
+        $test_body->delete();
+
+        return redirect()->route('option', compact('id'));
+
+    }
+
+    public function deleteTheory($id)
+    {
+        $test_theory = TestTheory::where('id', '=', $id)->first();
+        $id = $test_theory->user_id;
+        $test_theory->delete();
+
+        return redirect()->route('option', compact('id'));
+
+    }
+
+    public function deleteOperate($id)
+    {
+        $test_operate = TestOperate::where('id', '=', $id)->first();
+        $id = $test_operate->user_id;
+        $test_operate->delete();
+
+        return redirect()->route('option', compact('id'));
+
+    }
 }
