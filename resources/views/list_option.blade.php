@@ -46,6 +46,26 @@
         border-style: solid;
         background: #e8e8e8;
     }
+
+    span.border.border-warning.border-2.p-2.mb-2 {
+        background-color: #ffc107;
+        // border-radius: 5px;
+    }
+
+    span.border.border-success.border-2.p-2.mb-2 {
+        background-color: #4bae4f;
+        // border-radius: 5px;
+    }
+
+    span.border.border-danger.border-2.p-2.mb-2 {
+        background-color: #f74354;
+        // border-radius: 5px;
+    }
+
+    p.bor {
+        margin-top: 15px;
+
+    }
 </style>
 
 
@@ -98,7 +118,8 @@
                                 <h5 class="card-title">ทดสอบร่างกาย</h5>
 
                                 <br>
-                                <a href="{{ route('body', ['id' => $name->id]) }}" class="btn btn-primary">ทดสอบ</a>
+                                <a href="{{ route('body', ['id' => $name->id]) }}" class="btn btn-dark"
+                                    style="font-weight: 700;">ทดสอบ</a>
                             </div>
                         </div>
                     </div>
@@ -109,7 +130,8 @@
                                 <i class="bi bi-card-checklist" style="font-size: 40px;"></i>
                                 <h5 class="card-title">ทดสอบทฤษฎี</h5>
                                 <br>
-                                <a href="{{ route('theory', ['id' => $name->id]) }}" class="btn btn-primary">ทดสอบ</a>
+                                <a href="{{ route('theory', ['id' => $name->id]) }}" class="btn btn-dark"
+                                    style="font-weight: 700;">ทดสอบ</a>
                             </div>
                         </div>
                     </div>
@@ -120,22 +142,23 @@
                                 <i class="bi bi-car-front-fill" style="font-size: 40px;"></i>
                                 <h5 class="card-title">ทดสอบปฏิบัติ</h5>
                                 <br>
-                                <a href="{{ route('operate', ['id' => $name->id]) }}" class="btn btn-primary">ทดสอบ</a>
+                                <a href="{{ route('operate', ['id' => $name->id]) }}" class="btn btn-dark"
+                                    style="font-weight: 700;">ทดสอบ</a>
                             </div>
                         </div>
                     </div>
 
                     {{-- Table --}}
                     <div class="container py-5">
-                        <table class="table table-light table-striped-columns">
+                        <table class="table table-bordered">
 
                             <thead>
                                 <tr>
 
-                                    <th scope="col" colspan="2" style="background-color:#8eb6f0;">ทดสอบร่างกาย
+                                    <th scope="col" colspan="2" style="background-color:#e8e8e8;">ทดสอบร่างกาย
                                     </th>
 
-                                    <th scope="col" class="colorstatus" style="background-color:#508bfc;">สถานะ
+                                    <th scope="col" class="colorstatus" style="background-color:#e8e8e8;">สถานะ
                                     </th>
 
 
@@ -153,7 +176,8 @@
                             <tbody>
                                 <tr>
                                     <th scope="row">1</th>
-                                    <td>ทดสอบตาบอดสี</td>
+                                    <td>ทดสอบตาบอดสี
+                                    </td>
                                     <td>
                                         @if (@$test_body->eyecolor === null)
                                             <?php
@@ -170,7 +194,11 @@
                                         @endif
 
 
+
                                     </td>
+
+
+
 
 
                                 </tr>
@@ -241,12 +269,11 @@
 
 
                                 </tr>
-
-                                <thead>
+                                {{-- <thead>
 
                                     <th scope="col" colspan="3" class="editdelete"> <a
                                             href="{{ route('body', ['id' => $name->id]) }}"
-                                            class="btn btn-warning">แก้ไข</a>
+                                            class="btn btn-primary">แก้ไข</a>
                                         <a class="btn btn-danger d-none" role="button"
                                             href="{{ route('deletebody', ['id' => $name->id]) }}"
                                             id="btn-deletebody">ลบ</a>
@@ -254,22 +281,23 @@
                                             role="button">ลบ</a>
                                     </th>
 
-                                </thead>
+                                </thead> --}}
+
                                 <thead>
 
 
                                     <th scope="col" colspan="3">
                                         @if (@$waitcheck == 0)
                                             @if (@$sumcheck >= 3)
-                                                <button type="button" class="btn btn-success"
-                                                    style="font-weight: 700">ผ่านการทดสอบ</button>
+                                                <p class="bor"><span class="border border-success border-2 p-2 mb-2"
+                                                        style="font-weight: 700">ผ่านการทดสอบ</span></p>
                                             @elseif (@$sumcheck < 3)
-                                                <button type="button" class="btn btn-danger"
-                                                    style="font-weight: 700">ไม่ผ่านการทดสอบ</button>
+                                                <p class="bor"><span class="border border-danger border-2 p-2 mb-2"
+                                                        style="font-weight: 700">ไม่ผ่านการทดสอบ</span></p>
                                             @endif
                                         @elseif(@$waitcheck == 1)
-                                            <button type="button" class="btn btn-warning"
-                                                style="font-weight: 700">รอการพิจารณา</button>
+                                            <p class="bor"><span class="border border-warning border-2 p-2 mb-2"
+                                                    style="font-weight: 700">รอการพิจารณา</span></p>
                                             <?php
                                             $checkyellow = $checkyellow + 1;
                                             ?>
@@ -291,10 +319,10 @@
 
                                     <tr>
 
-                                        <th scope="col" colspan="2" style="background-color: #8eb6f0;">
+                                        <th scope="col" colspan="2" style="background-color: #e8e8e8;;">
                                             ทดสอบทฤษฎี</th>
 
-                                        <th scope="col" style="background-color:#508bfc;">สถานะ
+                                        <th scope="col" style="background-color:#e8e8e8;;">สถานะ
                                         </th>
 
 
@@ -365,10 +393,11 @@
                                     </th>
 
                                 </tr>
-                                <thead>
+
+                                {{-- <thead>
                                     <th scope="col" colspan="3" class="editdelete"> <a
                                             href="{{ route('theory', ['id' => $name->id]) }}"
-                                            class="btn btn-warning">แก้ไข</a>
+                                            class="btn btn-primary">แก้ไข</a>
                                         <a class="btn btn-danger d-none" role="button"
                                             href="{{ route('deletetheory', ['id' => $name->id]) }}"
                                             id="btn-deletetheory">ลบ</a>
@@ -376,20 +405,22 @@
                                             role="button">ลบ</a>
                                     </th>
 
-                                </thead>
+                                </thead> --}}
+
                                 <thead>
                                     <th scope="col" colspan="3">
                                         @if (@$check_wait == 0)
                                             @if (@$sumtotal >= 120)
-                                                <button type="button" class="btn btn-success"
-                                                    style="font-weight: 700">ผ่านการทดสอบ</button>
+                                                <p class="bor"><span
+                                                        class="border border-success border-2 p-2 mb-2"
+                                                        style="font-weight: 700">ผ่านการทดสอบ</span></p>
                                             @elseif (@$sumtotal < 120)
-                                                <button type="button" class="btn btn-danger"
-                                                    style="font-weight: 700">ไม่ผ่านการทดสอบ</button>
+                                                <p class="bor"><span class="border border-danger border-2 p-2 mb-2"
+                                                        style="font-weight: 700">ไม่ผ่านการทดสอบ</span></p>
                                             @endif
                                         @elseif(@$check_wait == 1)
-                                            <button type="button" class="btn btn-warning"
-                                                style="font-weight: 700">รอการพิจารณา</button>
+                                            <p class="bor"><span class="border border-warning border-2 p-2 mb-2"
+                                                    style="font-weight: 700">รอการพิจารณา</span></p>
                                             <?php
                                             $checkyellow = $checkyellow + 1;
                                             ?>
@@ -401,11 +432,13 @@
                             <thead>
                                 <tr>
 
-                                    <th scope="col" colspan="2" style="background-color: #8eb6f0;">ทดสอบปฏิบัติ
+                                    <th scope="col" colspan="2" style="background-color: #e8e8e8;;">
+                                        ทดสอบปฏิบัติ
                                     </th>
 
-                                    <th scope="col" style="background-color:#508bfc;">สถานะ
+                                    <th scope="col" style="background-color:#e8e8e8;;">สถานะ
                                     </th>
+
 
 
 
@@ -429,16 +462,17 @@
                             </tr>
 
                             </tbody>
-                            <thead>
+                            {{-- <thead>
                                 <th scope="col" colspan="3" class="editdelete"> <a
                                         href="{{ route('operate', ['id' => $name->id]) }}"
-                                        class="btn btn-warning">แก้ไข</a>
+                                        class="btn btn-primary">แก้ไข</a>
                                     <a class="btn btn-danger d-none" role="button"
                                         href="{{ route('deleteoperate', ['id' => $name->id]) }}"
                                         id="btn-deleteoperate">ลบ</a>
                                     <a class="btn btn-danger" onclick="deleteOperate({{ @$test_operate->id }})"
                                         role="button">ลบ</a>
-                                </th>
+                                </th> --}}
+
 
                             </thead>
                             <thead>
@@ -447,17 +481,14 @@
                                     <th scope="col" colspan="3">
 
                                         @if (@$test_operate->check === null)
-                                            {{-- <p style="color: #ffc107;">รอการพิจารณา</p> --}}
-                                            <button type="button" class="btn btn-warning"
-                                                style="font-weight: 700">รอการพิจารณา</button>
+                                            <p class="bor"><span class="border border-warning border-2 p-2 mb-2"
+                                                    style="font-weight: 700">รอการพิจารณา</span></p>
                                         @elseif (@$test_operate->check == 1)
-                                            {{-- <p style="color: #4bae4f">ผ่านการทดสอบ</p> --}}
-                                            <button type="button" class="btn btn-success"
-                                                style="font-weight: 700">ผ่านการทดสอบ</button>
+                                            <p class="bor"><span class="border border-success border-2 p-2 mb-2"
+                                                    style="font-weight: 700">ผ่านการทดสอบ</span></p>
                                         @elseif (@$test_operate->check == 0)
-                                            {{-- <p style="color:#f74354">ไม่ผ่านการทดสอบ</p> --}}
-                                            <button type="button" class="btn btn-danger"
-                                                style="font-weight: 700">ไม่ผ่านการทดสอบ</button>
+                                            <p class="bor"><span class="border border-danger border-2 p-2 mb-2"
+                                                    style="font-weight: 700">ไม่ผ่านการทดสอบ</span></p>
                                             <?php
                                             $checkyellow = $checkyellow + 1;
                                             ?>
@@ -472,7 +503,8 @@
                     <div class="p-5 text-center">
                         <a class="btn btn-primary d-none" role="button" href="{{ url('/welcome') }}"
                             id="btn-savedata">บันทึก</a>
-                        <a class="btn btn-primary" onclick="saveData()" role="button">บันทึก</a>
+                        <a class="btn btn-success" onclick="saveData()" role="button"
+                            style="font-weight: 700">บันทึกข้อมูล</a>
                         <a class="btn btn-danger" role="button" href="{{ url('/') }}">ย้อนกลับ</a>
 
 

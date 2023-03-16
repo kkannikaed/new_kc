@@ -57,12 +57,14 @@
 
                                 <div class="form-outline mb-4">
                                     <input type="text" class="form-control" name="fname" title="name"
-                                        placeholder="ชื่อ" />
+                                        placeholder="ชื่อ" required>
                                 </div>
 
                                 <div class="form-outline mb-4">
                                     <input type="text" class="form-control" name="lname" title="name"
-                                        placeholder="นามสกุล" />
+                                        placeholder="นามสกุล" required>
+
+                                    {{-- required จำเป้นต้องกรอก --}}
                                 </div>
                                 <button type="submit" class="btn btn-primary" role="button">บันทึก</button>
                                 <a class="btn btn-danger" role="button" href="{{ url('/welcome') }}"

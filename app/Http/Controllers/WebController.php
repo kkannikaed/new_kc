@@ -177,4 +177,15 @@ class WebController extends Controller
         return redirect()->route('option', compact('id'));
 
     }
+
+    public function dataTable()
+    {
+
+        $names = NameTable::with('TestBody', 'TestOperate', 'TestTheory')->has('TestBody')->has('TestOperate')->has('TestTheory')->get();
+        // return $names;
+
+        // return view('welcome');
+        return view('datatable', compact('names'));
+
+    }
 }
