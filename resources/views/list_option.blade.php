@@ -149,7 +149,7 @@
                     </div>
 
                     {{-- Table --}}
-                    <div class="container py-5">
+                    <div class="container py-5 table-user">
                         <table class="table table-bordered">
 
                             <thead>
@@ -269,7 +269,7 @@
 
 
                                 </tr>
-                                {{-- <thead>
+                                <thead>
 
                                     <th scope="col" colspan="3" class="editdelete"> <a
                                             href="{{ route('body', ['id' => $name->id]) }}"
@@ -281,7 +281,7 @@
                                             role="button">ลบ</a>
                                     </th>
 
-                                </thead> --}}
+                                </thead>
 
                                 <thead>
 
@@ -289,7 +289,8 @@
                                     <th scope="col" colspan="3">
                                         @if (@$waitcheck == 0)
                                             @if (@$sumcheck >= 3)
-                                                <p class="bor"><span class="border border-success border-2 p-2 mb-2"
+                                                <p class="bor"><span
+                                                        class="border border-success border-2 p-2 mb-2"
                                                         style="font-weight: 700">ผ่านการทดสอบ</span></p>
                                             @elseif (@$sumcheck < 3)
                                                 <p class="bor"><span class="border border-danger border-2 p-2 mb-2"
@@ -394,7 +395,7 @@
 
                                 </tr>
 
-                                {{-- <thead>
+                                <thead>
                                     <th scope="col" colspan="3" class="editdelete"> <a
                                             href="{{ route('theory', ['id' => $name->id]) }}"
                                             class="btn btn-primary">แก้ไข</a>
@@ -405,7 +406,7 @@
                                             role="button">ลบ</a>
                                     </th>
 
-                                </thead> --}}
+                                </thead>
 
                                 <thead>
                                     <th scope="col" colspan="3">

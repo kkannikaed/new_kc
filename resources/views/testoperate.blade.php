@@ -43,7 +43,7 @@
 
 <body>
 
-    <form method="POST" class="form-horizontal" action="{{ route('save-test-operate') }}">
+    <form method="POST" class="form-horizontal" action="{{ route('') }}">
         @csrf
 
         <section class="vh-100">
@@ -58,7 +58,7 @@
                         <h3 class="mb-5 text-center">ทดสอบภาคปฏิบัติ</h3>
 
                         <div class="card shadow-2-strong p-5" style="border-radius: 1rem;">
-                            <div class="test-eye-colour">
+                            <div class="test-operate-colour">
                                 <p
                                     style="color: #508bfc;
                                 font-size: 17px;
@@ -67,15 +67,15 @@
 
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="check" id="check-pass"
-                                        value="1">
-                                    <label class="form-check-label" for="eyecolor-pass">
+                                        value="1" {{ $test_operate->check == 1 ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="operate-pass">
                                         ผ่านการทดสอบ
                                     </label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="check" id="check-fail"
-                                        value="0">
-                                    <label class="form-check-label" for="eyecolor-fail">
+                                        value="0" {{ $test_operate->check == 0 ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="operate-fail">
                                         ไม่ผ่านการทดสอบ
                                     </label>
                                 </div>
@@ -85,7 +85,7 @@
 
                             <div class=" p-5 text-center">
                                 <button type="submit" class="btn btn-primary" role="button">บันทึก</button>
-                                <a href="{{ route('savename') }}" class="btn btn-primary">ย้อนกลับ</a>
+                                <a href="{{ route('option', ['id' => $id]) }}" class="btn btn-primary">ย้อนกลับ</a>
                             </div>
 
                         </div>

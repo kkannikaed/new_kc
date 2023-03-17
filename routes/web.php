@@ -59,3 +59,5 @@ Route::get('/deleteoperate/{id}', [WebController::class, 'deleteOperate'])->name
 Route::get('/datatable', [WebController::class, 'dataTable'])->name('datatable');
 
 Route::post('/datatable', [WebController::class, 'dataTable'])->name('datatable');
+
+Route::get('/test', [WebController::class, 'test'])->name('test');

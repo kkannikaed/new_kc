@@ -72,10 +72,11 @@
                             <div class="test-traffic-sign">
                                 <p><i class="bi bi-sign-stop-lights"></i> ป้ายจราจร
                                 </p>
-
+                                {{-- @dd($test_theory->traffic_sign) --}}
                                 <label for="inputscore" class="form-label">คะแนนที่ได้</label>
                                 <input type="number" name="traffic_sign" id="inputscore" class="form-control"
-                                    aria-describedby="scoreHelpBlock" min="1" max="50">
+                                    aria-describedby="scoreHelpBlock" min="1" max="50"
+                                    value="{{ @$test_theory->traffic_sign }}">
                             </div>
                             <br>
 
@@ -84,7 +85,8 @@
 
                                 <label for="inputscore" class="form-label">คะแนนที่ได้</label>
                                 <input type="number" name="traffic_lines" id="inputscore" class="form-control"
-                                    aria-describedby="scoreHelpBlock" min="1" max="50">
+                                    aria-describedby="scoreHelpBlock" min="1" max="50"
+                                    value="{{ @$test_theory->traffic_lines }}">
                             </div>
 
                             <br>
@@ -93,7 +95,8 @@
 
                                 <label for="inputscore" class="form-label">คะแนนที่ได้</label>
                                 <input type="number" name="giving_way" id="inputscore" class="form-control"
-                                    aria-describedby="scoreHelpBlock" min="1" max="50">
+                                    aria-describedby="scoreHelpBlock" min="1" max="50"
+                                    value="{{ @$test_theory->giving_way }}">
                             </div>
                             <br>
 
@@ -111,7 +114,7 @@
 
                             <div class=" p-5 text-center">
                                 <button type="submit" class="btn btn-primary" role="button">บันทึก</button>
-                                <a href="{{ route('savename') }}" class="btn btn-primary">ย้อนกลับ</a>
+                                <a href="{{ route('option', ['id' => $id]) }}" class="btn btn-primary">ย้อนกลับ</a>
                             </div>
 
                         </div>

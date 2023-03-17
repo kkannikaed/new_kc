@@ -46,22 +46,25 @@ class WebController extends Controller
     public function body(Request $req)
     {
         $id = $req->id;
+        $test_body = TestBody::where('user_id', '=', $id)->first();
 
-        return view('testbody', compact('id'));
+        return view('testbody', compact('id', 'test_body'));
 
     }
 
     public function operate(Request $req)
     {
         $id = $req->id;
-        return view('testoperate', compact('id'));
+        $test_operate = TestOperate::where('user_id', '=', $id)->first();
+        return view('testoperate', compact('id', 'test_operate'));
 
     }
 
     public function theory(Request $req)
     {
         $id = $req->id;
-        return view('testtheory', compact('id'));
+        $test_theory = TestTheory::where('user_id', '=', $id)->first();
+        return view('testtheory', compact('id', 'test_theory'));
 
     }
 
@@ -95,14 +98,24 @@ class WebController extends Controller
 
     public function saveTestBody(Request $req)
     {
-
-        $test_body = new TestBody;
-        $test_body->eyecolor = $req->eyecolor;
-        $test_body->longsighted = $req->longsighted;
-        $test_body->astigmatism = $req->astigmatism;
-        $test_body->response = $req->response;
-        $test_body->user_id = $req->user_id;
-        $test_body->save();
+        // return $req->user_id;
+        $test_body = TestBody::where('user_id', '=', $req->user_id)->first();
+        if ($test_body) {
+            $test_body->eyecolor = $req->eyecolor;
+            $test_body->longsighted = $req->longsighted;
+            $test_body->astigmatism = $req->astigmatism;
+            $test_body->response = $req->response;
+            $test_body->save();
+        } else {
+            // return 'not have';
+            $test_body = new TestBody;
+            $test_body->eyecolor = $req->eyecolor;
+            $test_body->longsighted = $req->longsighted;
+            $test_body->astigmatism = $req->astigmatism;
+            $test_body->response = $req->response;
+            $test_body->user_id = $req->user_id;
+            $test_body->save();
+        }
 
         $id = $req->user_id;
 
@@ -112,25 +125,45 @@ class WebController extends Controller
     public function saveTestTheory(Request $req)
     {
 
-        $test_theory = new TestTheory;
-        $test_theory->traffic_sign = $req->traffic_sign;
-        $test_theory->traffic_lines = $req->traffic_lines;
-        $test_theory->giving_way = $req->giving_way;
-        $test_theory->user_id = $req->user_id;
-        $test_theory->save();
+        $test_theory = TestTheory::where('user_id', '=', $req->user_id)->first();
+
+        if ($test_theory) {
+            $test_theory->traffic_sign = $req->traffic_sign;
+            $test_theory->traffic_lines = $req->traffic_lines;
+            $test_theory->giving_way = $req->giving_way;
+            $test_theory->user_id = $req->user_id;
+            $test_theory->save();
+        } else {
+            // return 'not have';
+            $test_theory = new TestTheory;
+            $test_theory->traffic_sign = $req->traffic_sign;
+            $test_theory->traffic_lines = $req->traffic_lines;
+            $test_theory->giving_way = $req->giving_way;
+            $test_theory->user_id = $req->user_id;
+            $test_theory->save();
+        }
 
         $id = $req->user_id;
 
         return redirect()->route('option', compact('test_theory', 'id'));
+
     }
 
     public function saveTestOperate(Request $req)
     {
 
-        $test_operate = new TestOperate;
-        $test_operate->check = $req->check;
-        $test_operate->user_id = $req->user_id;
-        $test_operate->save();
+        $test_operate = TestOperate::where('user_id', '=', $req->user_id)->first();
+        if ($test_operate) {
+            $test_operate->check = $req->check;
+            $test_operate->user_id = $req->user_id;
+            $test_operate->save();
+        } else {
+            // return 'not have';
+            $test_operate = new TestOperate;
+            $test_operate->check = $req->check;
+            $test_operate->user_id = $req->user_id;
+            $test_operate->save();
+        }
 
         $id = $req->user_id;
 
@@ -186,6 +219,13 @@ class WebController extends Controller
 
         // return view('welcome');
         return view('datatable', compact('names'));
+
+    }
+
+    public function test()
+    {
+
+        return view('test');
 
     }
 }
