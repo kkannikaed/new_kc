@@ -211,21 +211,30 @@ class WebController extends Controller
 
     }
 
-    public function dataTable()
+    // public function dataTable()
+    // {
+
+    //     $names = NameTable::with('TestBody', 'TestOperate', 'TestTheory')->has('TestBody')->has('TestOperate')->has('TestTheory')->get();
+    //     // return $names;
+
+    //     // return view('welcome');
+    //     return view('datatable', compact('names'));
+
+    // }
+
+    // public function test()
+    // {
+
+    //     return view('test');
+
+    // }
+
+    public function deleteUser($id)
     {
-
-        $names = NameTable::with('TestBody', 'TestOperate', 'TestTheory')->has('TestBody')->has('TestOperate')->has('TestTheory')->get();
-        // return $names;
-
-        // return view('welcome');
-        return view('datatable', compact('names'));
-
-    }
-
-    public function test()
-    {
-
-        return view('test');
+        // return 5555;
+        $name = NameTable::where('id', '=', $id)->first();
+        $name->delete();
+        return redirect()->route('welcome', compact('id'));
 
     }
 }

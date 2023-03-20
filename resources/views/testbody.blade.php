@@ -11,7 +11,7 @@
     integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
 </script>
 
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@100&display=swap" rel="stylesheet">
@@ -67,7 +67,8 @@
                         <div class="card shadow-2-strong p-5" style="border-radius: 1rem;">
                             <div class="test-eye-colour">
                                 <p>ทดสอบตาบอดสี</p>
-                                @if ($test_body->eyecolor == 1)
+                                {{-- if num 1 --}}
+                                {{-- @if (@$test_body->eyecolor == 1)
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="eyecolor"
                                             id="eyecolor-pass" value="1" checked>
@@ -75,6 +76,7 @@
                                             ผ่านการทดสอบ
                                         </label>
                                     </div>
+
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="eyecolor"
                                             id="eyecolor-fail" value="0">
@@ -84,7 +86,7 @@
                                     </div>
 
                                     <br>
-                                @elseif ($test_body->eyecolor == 0)
+                                @elseif (@$test_body->eyecolor == 0)
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="eyecolor"
                                             id="eyecolor-pass" value="1">
@@ -99,15 +101,29 @@
                                             ไม่ผ่านการทดสอบ
                                         </label>
                                     </div>
-                                @endif
+                                @endif --}}
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="eyecolor" id="eyecolor-pass"
+                                        value="1" {{ @$test_body->eyecolor == 1 ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="eyecolor-pass">
+                                        ผ่านการทดสอบ
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="eyecolor" id="eyecolor-fail"
+                                        value="0" {{ @$test_body->eyecolor === 0 ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="eyecolor-fail">
+                                        ไม่ผ่านการทดสอบ
+                                    </label>
+                                </div>
 
-
+                                {{-- if num 2 --}}
                                 <?php
                                 $score = '';
                                 $score_2 = '';
-                                if ($test_body->longsighted == 1) {
+                                if (@$test_body->longsighted == 1) {
                                     $score = 'checked';
-                                } elseif ($test_body->longsighted == 0) {
+                                } elseif (@$test_body->longsighted === 0) {
                                     $score_2 = 'checked';
                                 }
                                 
@@ -132,17 +148,16 @@
                                         </label>
                                     </div>
                                 </div>
-
-
                                 <br>
 
+                                {{-- if num 3 --}}
                                 <div class="test-astigmatism">
                                     <p>ทดสอบสายตาเอียง</p>
 
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="astigmatism"
                                             id="astigmatism-pass" value="1"
-                                            {{ $test_body->astigmatism == 1 ? 'checked' : '' }}>
+                                            {{ @$test_body->astigmatism == 1 ? 'checked' : '' }}>
                                         <label class="form-check-label" for="astigmatism-pass">
                                             ผ่านการทดสอบ
                                         </label>
@@ -150,7 +165,7 @@
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="astigmatism"
                                             id="astigmatism-fail" value="0"
-                                            {{ $test_body->astigmatism == 0 ? 'checked' : '' }}>
+                                            {{ @$test_body->astigmatism === 0 ? 'checked' : '' }}>
                                         <label class="form-check-label" for="astigmatism-fail">
                                             ไม่ผ่านการทดสอบ
                                         </label>
@@ -166,7 +181,7 @@
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="response"
                                             id="response-pass" value="1"
-                                            {{ $test_body->response == 1 ? 'checked' : '' }}>
+                                            {{ @$test_body->response == 1 ? 'checked' : '' }}>
                                         <label class="form-check-label" for="response-pass">
                                             ผ่านการทดสอบ
                                         </label>
@@ -174,7 +189,7 @@
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="response"
                                             id="response-fail" value="0"
-                                            {{ $test_body->response == 0 ? 'checked' : '' }}>
+                                            {{ @$test_body->response === 0 ? 'checked' : '' }}>
                                         <label class="form-check-label" for="response-fail">
                                             ไม่ผ่านการทดสอบ
                                         </label>

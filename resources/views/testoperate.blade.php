@@ -43,7 +43,7 @@
 
 <body>
 
-    <form method="POST" class="form-horizontal" action="{{ route('') }}">
+    <form method="POST" class="form-horizontal" action="{{ route('save-test-operate') }}">
         @csrf
 
         <section class="vh-100">
@@ -51,7 +51,9 @@
                 <div class="row d-flex justify-content-center align-items-center ">
                     <div class="col-12 col-md-8 col-lg-6 col-xl-5">
 
+
                         <div class="text-center">
+
                             <i class="bi bi-car-front-fill" style="font-size: 40px;"></i>
                         </div>
 
@@ -67,16 +69,17 @@
 
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="check" id="check-pass"
-                                        value="1" {{ $test_operate->check == 1 ? 'checked' : '' }}>
+                                        value="1" {{ @$test_operate->check == 1 ? 'checked' : '' }}>
                                     <label class="form-check-label" for="operate-pass">
                                         ผ่านการทดสอบ
                                     </label>
                                 </div>
+
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="check" id="check-fail"
-                                        value="0" {{ $test_operate->check == 0 ? 'checked' : '' }}>
-                                    <label class="form-check-label" for="operate-fail">
-                                        ไม่ผ่านการทดสอบ
+                                        value="0" {{ @$test_operate->check === 0 ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="operate-fail">ไม่ผ่านการทดสอบ
+
                                     </label>
                                 </div>
                             </div>

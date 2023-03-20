@@ -152,3 +152,114 @@
         $('#tabledrive').DataTable();
     });
 </script>
+
+
+{{-- code datatable old --}}
+{{--
+    <section class="vh-100">
+            <div class="container py-5 ">
+
+
+                <div class="row d-flex justify-content-center align-items-center h-100">
+
+
+                    <table class="table" id="tabledrive">
+                        <thead>
+
+                            <tr>
+                                <th scope="col">ลำดับ</th>
+                                <th scope="col">ชื่อ</th>
+                                <th scope="col">นามสกุล</th>
+                                <th scope="col">ทดสอบร่างกาย</th>
+                                <th scope="col">ทดสอบทฤษฏี</th>
+                                <th scope="col">ทดสอบปฎิบัติ</th>
+                                <th scope="col">สถานะ</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($names as $name)
+                                <tr>
+                                    <td scope="row">{{ $name->id }}</td>
+                                    <td>{{ $name->fname }}</td>
+                                    <td>{{ $name->lname }}</td>
+                                    // <?php
+                                    
+                                    // $sumtest_body = $name->TestBody->eyecolor + $name->TestBody->longsighted + $name->TestBody->astigmatism + $name->TestBody->response;
+                                    
+                                    // $sumtest_theory = $name->TestTheory->traffic_sign + $name->TestTheory->traffic_lines + $name->TestTheory->giving_way;
+                                    // dd($sumtest_theory);
+                                    
+                                    // $sumtest_operate = $name->TestOperate->check;
+                                    // // dd($sumtest_operate);
+                                    
+                                    // $status_total = 0;
+                                    ?>
+
+
+                                    <td>
+                                        @if (@$sumtest_body >= 3)
+                                            <i class="bi bi-check-circle-fill" style="color: #4bae4f"></i>
+                                            <?php
+                                            // $status_total = $status_total + 1;
+                                            ?>
+                                        @elseif (@$sumtest_body < 3)
+                                            <i class="bi bi-x-circle-fill" style="color: #f74354;"></i>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if (@$sumtest_theory >= 120)
+                                            <i class="bi bi-check-circle-fill" style="color: #4bae4f"></i>
+                                            <?php
+                                            // $status_total = $status_total + 1;
+                                            ?>
+                                        @elseif (@$sumtest_theory < 120)
+                                            <i class="bi bi-x-circle-fill" style="color: #f74354;"></i>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if (@$sumtest_operate == 1)
+                                            <i class="bi bi-check-circle-fill" style="color: #4bae4f"></i>
+                                            <?php
+                                            // $status_total = $status_total + 1;
+                                            ?>
+                                        @elseif (@$sumtest_operate == 0)
+                                            <i class="bi bi-x-circle-fill" style="color: #f74354;"></i>
+                                        @endif
+                                    </td>
+                                    <td>
+
+
+                                        @if (@$status_total >= 3)
+                                            <p class="font" style="color: #4bae4f;">ผ่านการทดสอบ</p>
+                                        @elseif (@$status_total < 3)
+                                            <p class="font" style="color: #f74354;">ไม่ผ่านการทดสอบ</p>
+                                        @endif
+
+
+                                    </td>
+
+                                    <td scope="col" colspan="3" class="editdelete"> <a
+                                            href="{{ route('body', ['id' => $name->id]) }}"
+                                            class="btn btn-primary">แก้ไข</a>
+                                        <a class="btn btn-danger d-none" role="button"
+                                            href="{{ route('deletebody', ['id' => $name->id]) }}"
+                                            id="btn-deletebody">ลบ</a>
+                                        <a class="btn btn-danger" onclick="deleteBody({{ @$test_body->id }})"
+                                            role="button">ลบ</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class=" p-5 text-center">
+                    <a class="btn btn-warning" role="button" href="{{ url('/') }}">ย้อนกลับ</a>
+                </div>
+            </div>
+
+        </section>
+
+--}}

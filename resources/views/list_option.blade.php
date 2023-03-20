@@ -47,24 +47,34 @@
         background: #e8e8e8;
     }
 
-    span.border.border-warning.border-2.p-2.mb-2 {
+    span.border-2.p-2.mb-2.warning {
         background-color: #ffc107;
         // border-radius: 5px;
     }
 
-    span.border.border-success.border-2.p-2.mb-2 {
+    span.border-2.p-2.mb-2.success {
         background-color: #4bae4f;
-        // border-radius: 5px;
+        color: white;
     }
 
-    span.border.border-danger.border-2.p-2.mb-2 {
-        background-color: #f74354;
-        // border-radius: 5px;
+    span.border-2.p-2.mb-2.fail {
+        background: #dc3545;
+        color: white;
     }
 
     p.bor {
         margin-top: 15px;
 
+    }
+
+    .card-body {
+        box-shadow: 3px 3px 20px 7px #e8e8e8;
+    }
+
+    .col-12.col-md-8.col-lg-6.border.border-light {
+        padding: 20px;
+        box-shadow: 3px 3px 20px 7px #e8e8e8;
+        border-radius: 10px;
     }
 </style>
 
@@ -79,7 +89,7 @@
         <section class="vh-100">
             <div class="container py-5 ">
                 <div class="row d-flex justify-content-center align-items-center h-100">
-                    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <div class="col-12 col-md-8 col-lg-6 border border-light">
                         <div class="row align-items-center ">
                             <div class="col ">
                                 <p>ชื่อ : {{ $name->fname }}</p>
@@ -101,9 +111,6 @@
                             <a class="btn btn-warning" role="button" href="{{ url('/') }}">แก้ไข</a>
                             <a class="btn btn-danger" role="button" href="{{ url('/') }}">ลบ</a>
                         </div> --}}
-
-
-
                     </div>
                 </div>
             </div>
@@ -289,16 +296,18 @@
                                     <th scope="col" colspan="3">
                                         @if (@$waitcheck == 0)
                                             @if (@$sumcheck >= 3)
-                                                <p class="bor"><span
-                                                        class="border border-success border-2 p-2 mb-2"
+                                                <p class="bor"><span class=" border-2 p-2 mb-2 success"
                                                         style="font-weight: 700">ผ่านการทดสอบ</span></p>
+                                                <input type="hidden" value="pass" class="checkstatus">
                                             @elseif (@$sumcheck < 3)
-                                                <p class="bor"><span class="border border-danger border-2 p-2 mb-2"
+                                                <p class="bor"><span class=" border-2 p-2 mb-2 fail"
                                                         style="font-weight: 700">ไม่ผ่านการทดสอบ</span></p>
+                                                <input type="hidden" value="fail" class="checkstatus">
                                             @endif
                                         @elseif(@$waitcheck == 1)
-                                            <p class="bor"><span class="border border-warning border-2 p-2 mb-2"
+                                            <p class="bor"><span class="border-2 p-2 mb-2 warning"
                                                     style="font-weight: 700">รอการพิจารณา</span></p>
+                                            <input type="hidden" value="wait" class="checkstatus">
                                             <?php
                                             $checkyellow = $checkyellow + 1;
                                             ?>
@@ -412,16 +421,18 @@
                                     <th scope="col" colspan="3">
                                         @if (@$check_wait == 0)
                                             @if (@$sumtotal >= 120)
-                                                <p class="bor"><span
-                                                        class="border border-success border-2 p-2 mb-2"
+                                                <p class="bor"><span class="border-2 p-2 mb-2 success"
                                                         style="font-weight: 700">ผ่านการทดสอบ</span></p>
+                                                <input type="hidden" value="pass" class="checkstatus">
                                             @elseif (@$sumtotal < 120)
-                                                <p class="bor"><span class="border border-danger border-2 p-2 mb-2"
+                                                <p class="bor"><span class="border-2 p-2 mb-2 fail"
                                                         style="font-weight: 700">ไม่ผ่านการทดสอบ</span></p>
+                                                <input type="hidden" value="fail" class="checkstatus">
                                             @endif
                                         @elseif(@$check_wait == 1)
-                                            <p class="bor"><span class="border border-warning border-2 p-2 mb-2"
+                                            <p class="bor"><span class="border-2 p-2 mb-2 warning"
                                                     style="font-weight: 700">รอการพิจารณา</span></p>
+                                            <input type="hidden" value="wait" class="checkstatus">
                                             <?php
                                             $checkyellow = $checkyellow + 1;
                                             ?>
@@ -463,7 +474,7 @@
                             </tr>
 
                             </tbody>
-                            {{-- <thead>
+                            <thead>
                                 <th scope="col" colspan="3" class="editdelete"> <a
                                         href="{{ route('operate', ['id' => $name->id]) }}"
                                         class="btn btn-primary">แก้ไข</a>
@@ -472,7 +483,7 @@
                                         id="btn-deleteoperate">ลบ</a>
                                     <a class="btn btn-danger" onclick="deleteOperate({{ @$test_operate->id }})"
                                         role="button">ลบ</a>
-                                </th> --}}
+                                </th>
 
 
                             </thead>
@@ -482,14 +493,17 @@
                                     <th scope="col" colspan="3">
 
                                         @if (@$test_operate->check === null)
-                                            <p class="bor"><span class="border border-warning border-2 p-2 mb-2"
+                                            <p class="bor"><span class="border-2 p-2 mb-2 warning"
                                                     style="font-weight: 700">รอการพิจารณา</span></p>
+                                            <input type="hidden" value="wait" class="checkstatus">
                                         @elseif (@$test_operate->check == 1)
-                                            <p class="bor"><span class="border border-success border-2 p-2 mb-2"
+                                            <p class="bor"><span class="border-2 p-2 mb-2 success"
                                                     style="font-weight: 700">ผ่านการทดสอบ</span></p>
+                                            <input type="hidden" value="pass" class="checkstatus">
                                         @elseif (@$test_operate->check == 0)
-                                            <p class="bor"><span class="border border-danger border-2 p-2 mb-2"
+                                            <p class="bor"><span class="border-2 p-2 mb-2 fail"
                                                     style="font-weight: 700">ไม่ผ่านการทดสอบ</span></p>
+                                            <input type="hidden" value="fail" class="checkstatus">
                                             <?php
                                             $checkyellow = $checkyellow + 1;
                                             ?>
@@ -502,11 +516,12 @@
                     </div>
 
                     <div class="p-5 text-center">
-                        <a class="btn btn-primary d-none" role="button" href="{{ url('/welcome') }}"
-                            id="btn-savedata">บันทึก</a>
-                        <a class="btn btn-success" onclick="saveData()" role="button"
+                        <a class="btn btn-dark " role="button" onclick="saveData()" id="btn-savedata"
                             style="font-weight: 700">บันทึกข้อมูล</a>
-                        <a class="btn btn-danger" role="button" href="{{ url('/') }}">ย้อนกลับ</a>
+                        {{-- <a class="btn btn-success" onclick="saveData()" role="button"
+                            style="font-weight: 700">บันทึกข้อมูล</a> --}}
+                        <a class="btn btn-light border-dark" style="font-weight: 700" role="button"
+                            href="{{ url('/') }}">ย้อนกลับ</a>
 
 
                         {{-- <a class="btn btn-primary" type="submit" role="button" style="font-weight: 700;"
@@ -638,7 +653,15 @@
 
     function saveData(id) {
 
-        if (typeof id !== "undefined") {
+        check = 'can'
+        $('.checkstatus').each(function() {
+            if (this.value == 'wait') {
+                check = 'cant';
+            } // console.log(this.value)
+        })
+        console.log(check)
+
+        if (check == 'can') {
             Swal.fire({
                 title: 'คุณต้องการบันทึกการทดสอบ?',
                 text: "คุณต้องการบันทึกการทดสอบ!",
@@ -651,13 +674,13 @@
 
             }).then((result) => {
                 if (result.isConfirmed) { //กดยืนยัน
-                    window.location.replace("/welcome/" + id);
+                    window.location.replace("/welcome");
 
                 }
             })
         } else {
             Swal.fire({
-                title: 'กรุณาทำแบบทดสอบทุกขั้นตอนให้ครบถ้วน',
+                text: 'กรุณาทำแบบทดสอบทุกขั้นตอนให้ครบถ้วน!',
                 confirmButtonText: 'ยืนยัน',
                 showClass: {
                     popup: 'animate__animated animate__fadeInDown'
