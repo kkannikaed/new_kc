@@ -78,7 +78,7 @@
                     <table class="table" id="tabledrive">
                         <thead>
                             <tr>
-                                <th scope="col">ลำดับ</th>
+                                <th scope="col d-none">ลำดับ</th>
                                 <th scope="col">ชื่อ</th>
                                 <th scope="col">นามสกุล</th>
                                 <th scope="col">ทดสอบร่างกาย</th>
@@ -96,19 +96,19 @@
 
                             @foreach ($names as $name)
                                 <tr>
-                                    <td scope="row">{{ $name->id }}</td>
+                                    <td scope="row d-none">{{ $name->id }}</td>
                                     <td>{{ $name->fname }}</td>
                                     <td>{{ $name->lname }}</td>
                                     <?php
-                                    
+
                                     $sumtest_body = $name->TestBody->eyecolor + $name->TestBody->longsighted + $name->TestBody->astigmatism + $name->TestBody->response;
-                                    
+
                                     $sumtest_theory = $name->TestTheory->traffic_sign + $name->TestTheory->traffic_lines + $name->TestTheory->giving_way;
                                     // dd($sumtest_theory);
-                                    
+
                                     $sumtest_operate = $name->TestOperate->check;
                                     // dd($sumtest_operate);
-                                    
+
                                     $status_total = 0;
                                     ?>
 

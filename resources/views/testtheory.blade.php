@@ -75,7 +75,7 @@
                                 {{-- @dd($test_theory->traffic_sign) --}}
                                 <label for="inputscore" class="form-label">คะแนนที่ได้</label>
                                 <input type="number" name="traffic_sign" id="inputscore" class="form-control"
-                                    aria-describedby="scoreHelpBlock" min="1" max="50"
+                                    aria-describedby="scoreHelpBlock" min="0" max="50"
                                     value="{{ @$test_theory->traffic_sign }}">
                             </div>
                             <br>
@@ -85,7 +85,7 @@
 
                                 <label for="inputscore" class="form-label">คะแนนที่ได้</label>
                                 <input type="number" name="traffic_lines" id="inputscore" class="form-control"
-                                    aria-describedby="scoreHelpBlock" min="1" max="50"
+                                    aria-describedby="scoreHelpBlock" min="0" max="50"
                                     value="{{ @$test_theory->traffic_lines }}">
                             </div>
 
@@ -95,7 +95,7 @@
 
                                 <label for="inputscore" class="form-label">คะแนนที่ได้</label>
                                 <input type="number" name="giving_way" id="inputscore" class="form-control"
-                                    aria-describedby="scoreHelpBlock" min="1" max="50"
+                                    aria-describedby="scoreHelpBlock" min="0" max="50"
                                     value="{{ @$test_theory->giving_way }}">
                             </div>
                             <br>

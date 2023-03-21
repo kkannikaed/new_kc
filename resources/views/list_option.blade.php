@@ -350,9 +350,9 @@
                                             $check_wait = 1;
                                             ?>
                                             <i class="bi bi-dash-circle" style="color: #ffc107;"></i>
-                                        @elseif (@$test_theory->traffic_sign >= 45)
+                                        @elseif (@$test_theory->traffic_sign >= 40)
                                             <i class="bi bi-check-circle" style="color: #4bae4f;"></i>
-                                        @elseif (@$test_theory->traffic_sign < 45)
+                                        @elseif (@$test_theory->traffic_sign < 40)
                                             <i class="bi bi-x-circle" style="color: #f74354;"></i>
                                         @endif
 
@@ -368,9 +368,9 @@
                                             $check_wait = 1;
                                             ?>
                                             <i class="bi bi-dash-circle" style="color: #ffc107;"></i>
-                                        @elseif (@$test_theory->traffic_lines >= 45)
+                                        @elseif (@$test_theory->traffic_lines >= 40)
                                             <i class="bi bi-check-circle" style="color: #4bae4f;"></i>
-                                        @elseif (@$test_theory->traffic_lines < 45)
+                                        @elseif (@$test_theory->traffic_lines < 40)
                                             <i class="bi bi-x-circle" style="color: #f74354;"></i>
                                         @endif
                                     </td>
@@ -385,9 +385,9 @@
                                             $check_wait = 1;
                                             ?>
                                             <i class="bi bi-dash-circle" style="color: #ffc107;"></i>
-                                        @elseif (@$test_theory->giving_way >= 45)
+                                        @elseif (@$test_theory->giving_way >= 40)
                                             <i class="bi bi-check-circle" style="color: #4bae4f;"></i>
-                                        @elseif (@$test_theory->giving_way < 45)
+                                        @elseif (@$test_theory->giving_way < 40)
                                             <i class="bi bi-x-circle" style="color: #f74354;"></i>
                                         @endif
                                     </td>
