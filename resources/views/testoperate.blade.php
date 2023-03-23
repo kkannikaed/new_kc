@@ -51,20 +51,19 @@
                 <div class="row d-flex justify-content-center align-items-center ">
                     <div class="col-12 col-md-8 col-lg-6 col-xl-5">
 
-
                         <div class="text-center">
-
                             <i class="bi bi-car-front-fill" style="font-size: 40px;"></i>
                         </div>
 
                         <h3 class="mb-5 text-center">ทดสอบภาคปฏิบัติ</h3>
 
+                        {{-- test step operate --}}
                         <div class="card shadow-2-strong p-5" style="border-radius: 1rem;">
                             <div class="test-operate-colour">
                                 <p
                                     style="color: #508bfc;
-                                font-size: 17px;
-                                font-weight: 700;">
+                                    font-size: 17px;
+                                    font-weight: 700;">
                                     ภาคปฏิบัติ</p>
 
                                 <div class="form-check">
@@ -78,14 +77,13 @@
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="check" id="check-fail"
                                         value="0" {{ @$test_operate->check === 0 ? 'checked' : '' }}>
-                                    <label class="form-check-label" for="operate-fail">ไม่ผ่านการทดสอบ
-
-                                    </label>
+                                    <label class="form-check-label" for="operate-fail">ไม่ผ่านการทดสอบ </label>
                                 </div>
                             </div>
 
                             <input type="hidden" name="user_id" value="{{ $id }}">
 
+                            {{-- button save operate database & back page -> list_option --}}
                             <div class=" p-5 text-center">
                                 <button type="submit" class="btn btn-primary" role="button">บันทึก</button>
                                 <a href="{{ route('option', ['id' => $id]) }}" class="btn btn-primary">ย้อนกลับ</a>

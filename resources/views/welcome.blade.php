@@ -56,8 +56,9 @@
         @csrf
 
         <section class="vh-100">
-            <div class="container py-5 ">
 
+            {{-- show user pass test / fail test --}}
+            <div class="container py-5 ">
                 <div class="container text-center">
                     <div class="row justify-content-evenly">
                         <div class="col-4 shadow-sm p-3 mb-5 bg-body-tertiary rounded">
@@ -68,15 +69,15 @@
                             <p class="text-num">จำนวนผู้ไม่ผ่านการทดสอบ</p>
                             <p id="show-sum-fail"></p>
                         </div>
-
                     </div>
                 </div>
             </div>
-            <div class="container py-5 ">
 
+            <div class="container py-5 ">
                 <div class="row d-flex justify-content-center align-items-center h-100">
                     <table class="table" id="tabledrive">
                         <thead>
+
                             <tr>
                                 <th scope="col d-none">ลำดับ</th>
                                 <th scope="col">ชื่อ</th>
@@ -87,7 +88,9 @@
                                 <th scope="col">สถานะ</th>
                                 <th scope="col"></th>
                             </tr>
+
                         </thead>
+
                         <tbody>
                             <?php
                             $sumpass = 0;
@@ -100,19 +103,16 @@
                                     <td>{{ $name->fname }}</td>
                                     <td>{{ $name->lname }}</td>
                                     <?php
-
                                     $sumtest_body = $name->TestBody->eyecolor + $name->TestBody->longsighted + $name->TestBody->astigmatism + $name->TestBody->response;
 
                                     $sumtest_theory = $name->TestTheory->traffic_sign + $name->TestTheory->traffic_lines + $name->TestTheory->giving_way;
                                     // dd($sumtest_theory);
-
                                     $sumtest_operate = $name->TestOperate->check;
                                     // dd($sumtest_operate);
-
                                     $status_total = 0;
                                     ?>
 
-
+                                    {{-- show pass fail test all --}}
                                     <td>
                                         @if (@$sumtest_body >= 3)
                                             <i class="bi bi-check-circle-fill" style="color: #4bae4f"></i>
@@ -144,9 +144,8 @@
                                         @endif
                                     </td>
 
+                                    {{-- show pass fail test drive all --}}
                                     <td>
-
-
                                         @if (@$status_total >= 3)
                                             <p class="font" style="color: #4bae4f;">ผ่านการทดสอบ</p>
                                             <?php
@@ -158,11 +157,9 @@
                                             $sumfail = $sumfail + 1;
                                             ?>
                                         @endif
-
-
-
                                     </td>
 
+                                    {{-- button edit datatable & delete data from database --}}
                                     <td scope="col" colspan="3" class="editdelete"> <a
                                             href="{{ route('option', ['id' => $name->id]) }}" class="btn btn-primary"
                                             style="font-weight: 700">แก้ไข</a>
@@ -180,26 +177,24 @@
 
                         </tbody>
                     </table>
-
-
-
                 </div>
+
+                {{-- button back page home --}}
                 <div class=" p-5 text-center">
                     <a class="btn btn-warning" role="button" href="{{ url('/') }}"
                         style="font-weight: 700">ย้อนกลับ</a>
                 </div>
+
             </div>
-
         </section>
-
-
     </form>
-
 </body>
 
 </html>
 
+
 <script>
+    {{-- button delete user test all alert -> delete database --}}
     $(document).ready(function() {
         $('#tabledrive').DataTable();
 
@@ -225,6 +220,8 @@
             })
         }
     }
+
+    {{-- ดึงข้อมูลเพื่อโชว์ user pass fail / day  --}}
     sumpass = $('#sumpass').val()
     sumfail = $('#sumfail').val()
 

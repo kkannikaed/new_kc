@@ -83,16 +83,14 @@
 
     <form method="POST" class="form-horizontal" action="{{ route('savename') }}">
         @csrf
-
-
-
         <section class="vh-100">
             <div class="container py-5 ">
                 <div class="row d-flex justify-content-center align-items-center h-100">
+                    {{-- show fname lname id -> database --}}
                     <div class="col-12 col-md-8 col-lg-6 border border-light">
                         <div class="row align-items-center ">
                             <div class="col ">
-                                <p>ชื่อ : {{ $name->fname }}</p>
+                                <p>ชื่อ : {{ $name->fname }}</p> {{-- เรียกใช้ จาก database -> $ --}}
                             </div>
                             <div class="col">
                                 <p>นามสกุล : {{ $name->lname }}</p>
@@ -106,33 +104,28 @@
 
                             </div>
                         </div>
-
-                        {{-- <div class="container text-center">
-                            <a class="btn btn-warning" role="button" href="{{ url('/') }}">แก้ไข</a>
-                            <a class="btn btn-danger" role="button" href="{{ url('/') }}">ลบ</a>
-                        </div> --}}
                     </div>
                 </div>
             </div>
 
             <div class="container text-center">
                 <div class="row align-items-start">
+                    {{-- button test body link --}}
                     <div class="col">
                         <div class="card" style="width: 18rem;">
-
                             <div class="card-body">
                                 <i class="bi bi-person-fill" style="font-size: 40px;"></i>
                                 <h5 class="card-title">ทดสอบร่างกาย</h5>
-
                                 <br>
                                 <a href="{{ route('body', ['id' => $name->id]) }}" class="btn btn-dark"
                                     style="font-weight: 700;">ทดสอบ</a>
                             </div>
                         </div>
                     </div>
+
+                    {{-- button test theory link --}}
                     <div class="col">
                         <div class="card" style="width: 18rem;">
-
                             <div class="card-body">
                                 <i class="bi bi-card-checklist" style="font-size: 40px;"></i>
                                 <h5 class="card-title">ทดสอบทฤษฎี</h5>
@@ -142,9 +135,10 @@
                             </div>
                         </div>
                     </div>
+
+                    {{-- button test operate link --}}
                     <div class="col">
                         <div class="card" style="width: 18rem;">
-
                             <div class="card-body">
                                 <i class="bi bi-car-front-fill" style="font-size: 40px;"></i>
                                 <h5 class="card-title">ทดสอบปฏิบัติ</h5>
@@ -155,36 +149,33 @@
                         </div>
                     </div>
 
-                    {{-- Table --}}
+                    {{-- Table pass fail test --}}
                     <div class="container py-5 table-user">
                         <table class="table table-bordered">
 
+                            {{-- show status test body pass fail --}}
                             <thead>
                                 <tr>
-
                                     <th scope="col" colspan="2" style="background-color:#e8e8e8;">ทดสอบร่างกาย
                                     </th>
-
                                     <th scope="col" class="colorstatus" style="background-color:#e8e8e8;">สถานะ
                                     </th>
-
-
                                 </tr>
-
-
                             </thead>
+
                             <?php
                             $sumcheck = 0;
                             $waitcheck = 0;
                             $checkyellow = 0;
                             ?>
 
-
                             <tbody>
+                                {{-- show status test1 --}}
+                                {{-- status test1 --}}
                                 <tr>
                                     <th scope="row">1</th>
-                                    <td>ทดสอบตาบอดสี
-                                    </td>
+                                    <td>ทดสอบตาบอดสี</td>
+                                    {{-- if else check --}}
                                     <td>
                                         @if (@$test_body->eyecolor === null)
                                             <?php
@@ -199,20 +190,14 @@
                                         @elseif (@$test_body->eyecolor == 0)
                                             <i class="bi bi-x-circle" style="color: #f74354;"></i>
                                         @endif
-
-
-
                                     </td>
-
-
-
-
-
                                 </tr>
 
+                                {{-- status test2 --}}
                                 <tr>
                                     <th scope="row">2</th>
                                     <td>ทดสอบตาสายตายาว</td>
+                                    {{-- if else check --}}
                                     <td>
                                         @if (@$test_body->longsighted === null)
                                             <?php
@@ -228,13 +213,13 @@
                                             <i class="bi bi-x-circle" style="color: #f74354;"></i>
                                         @endif
                                     </td>
-
-
-
                                 </tr>
+
+                                {{-- status test3 --}}
                                 <tr>
                                     <th scope="row">3</th>
                                     <td>ทดสอบสายตาเอียง</td>
+                                    {{-- if else check --}}
                                     <td>
                                         @if (@$test_body->astigmatism === null)
                                             <?php
@@ -250,14 +235,14 @@
                                             <i class="bi bi-x-circle" style="color: #f74354;"></i>
                                         @endif
                                     </td>
-
-
                                 </tr>
+
+                                {{-- status test4 --}}
                                 <tr>
                                     <th scope="row">4</th>
                                     <td>ทดสอบการตอบสนองของร่างกาย</td>
+                                    {{-- if else check --}}
                                     <td>
-
                                         @if (@$test_body->response === null)
                                             <?php
                                             $waitcheck = 1;
@@ -272,12 +257,10 @@
                                             <i class="bi bi-x-circle" style="color: #f74354;"></i>
                                         @endif
                                     </td>
-
-
-
                                 </tr>
                                 <thead>
 
+                                    {{-- button save datatable & delete data from database --}}
                                     <th scope="col" colspan="3" class="editdelete"> <a
                                             href="{{ route('body', ['id' => $name->id]) }}"
                                             class="btn btn-primary">แก้ไข</a>
@@ -290,9 +273,8 @@
 
                                 </thead>
 
+                                {{-- check status other test --}}
                                 <thead>
-
-
                                     <th scope="col" colspan="3">
                                         @if (@$waitcheck == 0)
                                             @if (@$sumcheck >= 3)
@@ -312,11 +294,10 @@
                                             $checkyellow = $checkyellow + 1;
                                             ?>
                                         @endif
-
                                     </th>
-
-
                                 </thead>
+
+                                {{-- show status test theory pass fail --}}
                                 <thead>
                                     <?php
                                     $check_wait = 0;
@@ -326,24 +307,18 @@
                                     $sumtotal = $sumtotal_traffic_sign + $sumtotal_traffic_lines + $sumtotal_giving_way;
                                     ?>
 
-
                                     <tr>
-
                                         <th scope="col" colspan="2" style="background-color: #e8e8e8;;">
                                             ทดสอบทฤษฎี</th>
-
-                                        <th scope="col" style="background-color:#e8e8e8;;">สถานะ
-                                        </th>
-
-
-
+                                        <th scope="col" style="background-color:#e8e8e8;;">สถานะ</th>
                                     </tr>
                                 </thead>
+
+                                {{-- show status test2 --}}
+                                {{-- status test1 --}}
                                 <tr>
                                     <th scope="row">1</th>
                                     <td>ป้ายจราจร </td>
-
-
                                     <td>
                                         @if (@$test_theory->traffic_sign == null)
                                             <?php
@@ -355,10 +330,10 @@
                                         @elseif (@$test_theory->traffic_sign < 40)
                                             <i class="bi bi-x-circle" style="color: #f74354;"></i>
                                         @endif
-
                                     </td>
-
                                 </tr>
+
+                                {{-- status test2 --}}
                                 <tr>
                                     <th scope="row">2</th>
                                     <td>เส้นจราจร</td>
@@ -374,8 +349,9 @@
                                             <i class="bi bi-x-circle" style="color: #f74354;"></i>
                                         @endif
                                     </td>
-
                                 </tr>
+
+                                {{-- status test3 --}}
                                 <tr>
                                     <th scope="row">3</th>
                                     <td>การให้ทาง</td>
@@ -391,19 +367,19 @@
                                             <i class="bi bi-x-circle" style="color: #f74354;"></i>
                                         @endif
                                     </td>
-
                                 </tr>
                             </tbody>
+
+                            {{-- sum show status test2 --}}
                             <thead>
                                 <tr>
-
                                     <th scope="col" colspan="3" style="">คะแนนรวมทั้งหมด :
                                         {{ $sumtotal }}
                                         คะแนน
                                     </th>
-
                                 </tr>
 
+                                {{-- button save datatable & delete data from database --}}
                                 <thead>
                                     <th scope="col" colspan="3" class="editdelete"> <a
                                             href="{{ route('theory', ['id' => $name->id]) }}"
@@ -414,9 +390,9 @@
                                         <a class="btn btn-danger" onclick="deleteTheory({{ @$test_theory->id }})"
                                             role="button">ลบ</a>
                                     </th>
-
                                 </thead>
 
+                                {{-- show status test theory pass fail --}}
                                 <thead>
                                     <th scope="col" colspan="3">
                                         @if (@$check_wait == 0)
@@ -441,21 +417,17 @@
                                 </thead>
 
                             </thead>
+
+                            {{-- show status test3 --}}
                             <thead>
                                 <tr>
-
                                     <th scope="col" colspan="2" style="background-color: #e8e8e8;;">
-                                        ทดสอบปฏิบัติ
-                                    </th>
-
-                                    <th scope="col" style="background-color:#e8e8e8;;">สถานะ
-                                    </th>
-
-
-
-
+                                        ทดสอบปฏิบัติ </th>
+                                    <th scope="col" style="background-color:#e8e8e8;;">สถานะ</th>
                                 </tr>
                             </thead>
+
+                            {{-- status test1 --}}
                             <tr>
                                 <th scope="row">1</th>
                                 <td>ภาคปฏิบัติ</td>
@@ -469,11 +441,9 @@
                                     @endif
                                     </i>
                                 </td>
-
-
                             </tr>
 
-                            </tbody>
+                            {{-- button save datatable & delete data from database --}}
                             <thead>
                                 <th scope="col" colspan="3" class="editdelete"> <a
                                         href="{{ route('operate', ['id' => $name->id]) }}"
@@ -484,14 +454,12 @@
                                     <a class="btn btn-danger" onclick="deleteOperate({{ @$test_operate->id }})"
                                         role="button">ลบ</a>
                                 </th>
-
-
                             </thead>
+
+                            {{-- show status test theory pass fail --}}
                             <thead>
                                 <tr>
-
                                     <th scope="col" colspan="3">
-
                                         @if (@$test_operate->check === null)
                                             <p class="bor"><span class="border-2 p-2 mb-2 warning"
                                                     style="font-weight: 700">รอการพิจารณา</span></p>
@@ -509,50 +477,36 @@
                                             ?>
                                         @endif
                                     </th>
-
                                 </tr>
                             </thead>
+
                         </table>
                     </div>
 
+
+                    {{-- button save data all -> database and show datatable --}}
                     <div class="p-5 text-center">
                         <a class="btn btn-dark " role="button" onclick="saveData()" id="btn-savedata"
                             style="font-weight: 700">บันทึกข้อมูล</a>
-                        {{-- <a class="btn btn-success" onclick="saveData()" role="button"
-                            style="font-weight: 700">บันทึกข้อมูล</a> --}}
+                        {{-- button back -> page home --}}
                         <a class="btn btn-light border-dark" style="font-weight: 700" role="button"
                             href="{{ url('/') }}">ย้อนกลับ</a>
-
-
-                        {{-- <a class="btn btn-primary" type="submit" role="button" style="font-weight: 700;"
-                            href="{{ url('/welcome') }}">บันทึก </a>
-                        <a class="btn btn-danger" role="button" style="font-weight: 700;"
-                            href="{{ url('/') }}">ย้อนกลับ</a> --}}
                     </div>
 
                 </div>
-
-
-
-
             </div>
-
-
         </section>
-
     </form>
-
-
-
-
-
 
 
 </body>
 
 </html>
 
+
 <script>
+    {{-- function delete test body alert --}}
+
     function deleteBody(id) {
         if (typeof id !== "undefined") {
             Swal.fire({
@@ -585,6 +539,8 @@
         }
     }
 
+    {{-- function delete test theory alert --}}
+
     function deleteTheory(id) {
         if (typeof id !== "undefined") {
             Swal.fire({
@@ -615,8 +571,9 @@
                 }
             })
         }
-
     }
+
+    {{-- function delete test operate alert --}}
 
     function deleteOperate(id) {
         if (typeof id !== "undefined") {
@@ -650,6 +607,8 @@
         }
 
     }
+
+    {{-- function save data -> datatable page welcome --}}
 
     function saveData(id) {
 

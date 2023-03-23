@@ -55,6 +55,7 @@
 
                                 <h3 class="mb-5">ระบบบันทึกผลการทดสอบขอใบอนุญาตขับขี่</h3>
 
+                                {{-- form input lname fname -> save database --}}
                                 <div class="form-outline mb-4">
                                     <input type="text" class="form-control" name="fname" title="name"
                                         placeholder="ชื่อ" required>
@@ -63,10 +64,12 @@
                                 <div class="form-outline mb-4">
                                     <input type="text" class="form-control" name="lname" title="name"
                                         placeholder="นามสกุล" required>
-
                                     {{-- required จำเป้นต้องกรอก --}}
                                 </div>
+
+                                {{-- button save - > page path /savename -> show page list_option --}}
                                 <button type="submit" class="btn btn-primary" role="button">บันทึก</button>
+                                {{-- button report data - > show datatable page /welcome --}}
                                 <a class="btn btn-danger" role="button" href="{{ url('/welcome') }}"
                                     style="font-weight: 700">ข้อมูลรายงาน</a>
                             </div>

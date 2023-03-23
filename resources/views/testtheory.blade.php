@@ -64,15 +64,16 @@
                         <div class="text-center">
                             <i class="bi bi-card-checklist" style="font-size: 40px;"></i>
                         </div>
-
-
                         <h3 class="mb-5 text-center">ทดสอบทฤษฎี</h3>
 
+                        {{-- form test step 2 input max 50 --}}
                         <div class="card shadow-2-strong p-5" style="border-radius: 1rem;">
+                            {{-- test theory 1 --}}
                             <div class="test-traffic-sign">
                                 <p><i class="bi bi-sign-stop-lights"></i> ป้ายจราจร
                                 </p>
                                 {{-- @dd($test_theory->traffic_sign) --}}
+                                {{-- max input number 50 --}}
                                 <label for="inputscore" class="form-label">คะแนนที่ได้</label>
                                 <input type="number" name="traffic_sign" id="inputscore" class="form-control"
                                     aria-describedby="scoreHelpBlock" min="0" max="50"
@@ -80,38 +81,31 @@
                             </div>
                             <br>
 
+                            {{-- test theory 2 --}}
                             <div class="test-traffic-lines">
                                 <p><i class="bi bi-sign-intersection-side"></i> เส้นจราจร</p>
-
+                                {{-- max input number 50 --}}
                                 <label for="inputscore" class="form-label">คะแนนที่ได้</label>
                                 <input type="number" name="traffic_lines" id="inputscore" class="form-control"
                                     aria-describedby="scoreHelpBlock" min="0" max="50"
                                     value="{{ @$test_theory->traffic_lines }}">
                             </div>
-
                             <br>
+
+                            {{-- test theory 3 --}}
                             <div class="test-giving-way">
                                 <p><i class="bi bi-sign-stop"></i> การให้ทาง</p>
-
+                                {{-- max input number 50 --}}
                                 <label for="inputscore" class="form-label">คะแนนที่ได้</label>
                                 <input type="number" name="giving_way" id="inputscore" class="form-control"
                                     aria-describedby="scoreHelpBlock" min="0" max="50"
                                     value="{{ @$test_theory->giving_way }}">
                             </div>
                             <br>
-
-                            {{-- <div class="test-sum">
-                                <label for="inputscore" class="form-label">ผลคะแนนรวม</label>
-                                <input type="number" name="summ" id="inputscore" class="form-control"
-                                    aria-describedby="scoreHelpBlock" style="border-color: #508bfc;">
-                            </div> --}}
-
-
-
                             <input type="hidden" name="user_id" value="{{ $id }}">
                             <br>
 
-
+                            {{-- button save theory database & back page -> list_option --}}
                             <div class=" p-5 text-center">
                                 <button type="submit" class="btn btn-primary" role="button">บันทึก</button>
                                 <a href="{{ route('option', ['id' => $id]) }}" class="btn btn-primary">ย้อนกลับ</a>

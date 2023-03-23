@@ -64,6 +64,7 @@
 
                         <h3 class="mb-5 text-center">ทดสอบร่างกาย</h3>
 
+                        {{-- test step 1 body --}}
                         <div class="card shadow-2-strong p-5" style="border-radius: 1rem;">
                             <div class="test-eye-colour">
                                 <p>ทดสอบตาบอดสี</p>
@@ -126,13 +127,11 @@
                                 } elseif (@$test_body->longsighted === 0) {
                                     $score_2 = 'checked';
                                 }
-                                
                                 ?>
 
-
+                                {{-- test step 2 body --}}
                                 <div class="test-longsighted">
                                     <p>ทดสอบตาสายตายาว</p>
-
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="longsighted"
                                             id="longsighted-pass" value="1" {{ $score }}>
@@ -150,10 +149,10 @@
                                 </div>
                                 <br>
 
+                                {{-- test step 3 body --}}
                                 {{-- if num 3 --}}
                                 <div class="test-astigmatism">
                                     <p>ทดสอบสายตาเอียง</p>
-
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="astigmatism"
                                             id="astigmatism-pass" value="1"
@@ -170,14 +169,12 @@
                                             ไม่ผ่านการทดสอบ
                                         </label>
                                     </div>
-
-
                                 </div>
                                 <br>
 
+                                {{-- test step 4 body --}}
                                 <div class="test-response-body">
                                     <p>ทดสอบการตอบสนองของร่างกาย</p>
-
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="response"
                                             id="response-pass" value="1"
@@ -197,10 +194,9 @@
                                 </div>
                                 <input type="hidden" name="user_id" value="{{ $id }}">
 
+                                {{-- button save body database & button back -> page list_option --}}
                                 <div class=" p-5 text-center">
                                     <button type="submit" class="btn btn-primary" role="button">บันทึก</button>
-                                    {{-- <a class="btn btn-primary" role="button"
-                                    href="{{ url('/list_option', ['id' => $name->id]) }}">ย้อนกลับ</a> --}}
                                     <a href="{{ route('option', ['id' => $id]) }}"
                                         class="btn btn-primary">ย้อนกลับ</a>
                                 </div>
@@ -209,18 +205,7 @@
                     </div>
                 </div>
 
-
         </section>
-
-
-
-
-
-
-
-
-
-
     </form>
 </body>
 
