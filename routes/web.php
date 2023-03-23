@@ -46,8 +46,6 @@ Route::post('/save-test-theory', [WebController::class, 'saveTestTheory'])->name
 
 Route::post('/save-test-operate', [WebController::class, 'saveTestOperate'])->name('save-test-operate');
 
-// Route::get('/savedata', [WebController::class, 'saveData'])->name('saveData');
-
 Route::post('/savedata', [WebController::class, 'saveData'])->name('saveData');
 
 Route::get('/deletebody/{id}', [WebController::class, 'deleteBody'])->name('deletebody');
@@ -55,11 +53,5 @@ Route::get('/deletebody/{id}', [WebController::class, 'deleteBody'])->name('dele
 Route::get('/deletetheory/{id}', [WebController::class, 'deleteTheory'])->name('deletetheory');
 
 Route::get('/deleteoperate/{id}', [WebController::class, 'deleteOperate'])->name('deleteoperate');
-
-Route::get('/datatable', [WebController::class, 'dataTable'])->name('datatable');
-
-Route::post('/datatable', [WebController::class, 'dataTable'])->name('datatable');
-
-Route::get('/test', [WebController::class, 'test'])->name('test');
 
 Route::get('/deleteuser/{id}', [WebController::class, 'deleteUser'])->name('deleteuser');
