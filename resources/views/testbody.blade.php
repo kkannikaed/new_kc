@@ -117,93 +117,90 @@
                                         ไม่ผ่านการทดสอบ
                                     </label>
                                 </div>
+                            </div>
+                            {{-- if num 2 --}}
+                            <?php
+                            $score = '';
+                            $score_2 = '';
+                            if (@$test_body->longsighted == 1) {
+                                $score = 'checked';
+                            } elseif (@$test_body->longsighted === 0) {
+                                $score_2 = 'checked';
+                            }
+                            ?>
 
-                                {{-- if num 2 --}}
-                                <?php
-                                $score = '';
-                                $score_2 = '';
-                                if (@$test_body->longsighted == 1) {
-                                    $score = 'checked';
-                                } elseif (@$test_body->longsighted === 0) {
-                                    $score_2 = 'checked';
-                                }
-                                ?>
-
-                                {{-- test step 2 body --}}
-                                <div class="test-longsighted">
-                                    <p>ทดสอบตาสายตายาว</p>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="longsighted"
-                                            id="longsighted-pass" value="1" {{ $score }}>
-                                        <label class="form-check-label" for="longsighted-pass">
-                                            ผ่านการทดสอบ
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="longsighted"
-                                            id="longsighted-fail" value="0" {{ $score_2 }}>
-                                        <label class="form-check-label" for="longsighted-fail">
-                                            ไม่ผ่านการทดสอบ
-                                        </label>
-                                    </div>
+                            {{-- test step 2 body --}}
+                            <div class="test-longsighted">
+                                <p>ทดสอบตาสายตายาว</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="longsighted"
+                                        id="longsighted-pass" value="1" {{ $score }}>
+                                    <label class="form-check-label" for="longsighted-pass">
+                                        ผ่านการทดสอบ
+                                    </label>
                                 </div>
-                                <br>
-
-                                {{-- test step 3 body --}}
-                                {{-- if num 3 --}}
-                                <div class="test-astigmatism">
-                                    <p>ทดสอบสายตาเอียง</p>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="astigmatism"
-                                            id="astigmatism-pass" value="1"
-                                            {{ @$test_body->astigmatism == 1 ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="astigmatism-pass">
-                                            ผ่านการทดสอบ
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="astigmatism"
-                                            id="astigmatism-fail" value="0"
-                                            {{ @$test_body->astigmatism === 0 ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="astigmatism-fail">
-                                            ไม่ผ่านการทดสอบ
-                                        </label>
-                                    </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="longsighted"
+                                        id="longsighted-fail" value="0" {{ $score_2 }}>
+                                    <label class="form-check-label" for="longsighted-fail">
+                                        ไม่ผ่านการทดสอบ
+                                    </label>
                                 </div>
-                                <br>
+                            </div>
+                            <br>
 
-                                {{-- test step 4 body --}}
-                                <div class="test-response-body">
-                                    <p>ทดสอบการตอบสนองของร่างกาย</p>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="response"
-                                            id="response-pass" value="1"
-                                            {{ @$test_body->response == 1 ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="response-pass">
-                                            ผ่านการทดสอบ
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="response"
-                                            id="response-fail" value="0"
-                                            {{ @$test_body->response === 0 ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="response-fail">
-                                            ไม่ผ่านการทดสอบ
-                                        </label>
-                                    </div>
+                            {{-- test step 3 body --}}
+                            {{-- if num 3 --}}
+                            <div class="test-astigmatism">
+                                <p>ทดสอบสายตาเอียง</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="astigmatism"
+                                        id="astigmatism-pass" value="1"
+                                        {{ @$test_body->astigmatism == 1 ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="astigmatism-pass">
+                                        ผ่านการทดสอบ
+                                    </label>
                                 </div>
-                                <input type="hidden" name="user_id" value="{{ $id }}">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="astigmatism"
+                                        id="astigmatism-fail" value="0"
+                                        {{ @$test_body->astigmatism === 0 ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="astigmatism-fail">
+                                        ไม่ผ่านการทดสอบ
+                                    </label>
+                                </div>
+                            </div>
+                            <br>
 
-                                {{-- button save body database & button back -> page list_option --}}
-                                <div class=" p-5 text-center">
-                                    <button type="submit" class="btn btn-primary" role="button">บันทึก</button>
-                                    <a href="{{ route('option', ['id' => $id]) }}"
-                                        class="btn btn-primary">ย้อนกลับ</a>
+                            {{-- test step 4 body --}}
+                            <div class="test-response-body">
+                                <p>ทดสอบการตอบสนองของร่างกาย</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="response" id="response-pass"
+                                        value="1" {{ @$test_body->response == 1 ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="response-pass">
+                                        ผ่านการทดสอบ
+                                    </label>
                                 </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="response" id="response-fail"
+                                        value="0" {{ @$test_body->response === 0 ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="response-fail">
+                                        ไม่ผ่านการทดสอบ
+                                    </label>
+                                </div>
+                            </div>
+                            <input type="hidden" name="user_id" value="{{ $id }}">
+
+                            {{-- button save body database & button back -> page list_option --}}
+                            <div class=" p-5 text-center">
+                                <button type="submit" class="btn btn-primary" role="button">บันทึก</button>
+                                <a href="{{ route('option', ['id' => $id]) }}" class="btn btn-primary">ย้อนกลับ</a>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
         </section>
     </form>

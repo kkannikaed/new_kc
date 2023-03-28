@@ -193,4 +193,22 @@ class WebController extends Controller
         return redirect()->route('welcome', compact('id'));
 
     }
+
+    public function updateEditBody(Request $req)
+    {
+        // return
+        return '';
+    }
+
+    public function updateEditTheory(Request $req)
+    {
+        // return
+        return '';
+    }
+
+    public function updateEditOperate(Request $req)
+    {
+        // return
+        return '';
+    }
 }

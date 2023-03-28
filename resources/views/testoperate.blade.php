@@ -75,8 +75,10 @@
                                 </div>
 
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="check" id="check-fail"
-                                        value="0" {{ @$test_operate->check === 0 ? 'checked' : '' }}>
+                                    <input class="form-check-input" type="radio"
+                                        name="ch
+                                    eck" id="check-fail" value="0"
+                                        {{ @$test_operate->check === 0 ? 'checked' : '' }}>
                                     <label class="form-check-label" for="operate-fail">ไม่ผ่านการทดสอบ </label>
                                 </div>
                             </div>
@@ -94,6 +96,7 @@
                 </div>
             </div>
             </div>
+
         </section>
 
 

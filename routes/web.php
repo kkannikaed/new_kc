@@ -39,3 +39,9 @@ Route::get('/deletetheory/{id}', [WebController::class, 'deleteTheory'])->name('
 Route::get('/deleteoperate/{id}', [WebController::class, 'deleteOperate'])->name('deleteoperate');
 
 Route::get('/deleteuser/{id}', [WebController::class, 'deleteUser'])->name('deleteuser');
+
+Route::post('/update-edit-body', [WebController::class, 'updateEditBody'])->name('update-edit-body');
+
+Route::post('/update-edit-theory', [WebController::class, 'updateEditTheory'])->name('update-edit-theory');
+
+Route::post('/update-edit-operate', [WebController::class, 'updateEditOperate'])->name('update-edit-operate');
